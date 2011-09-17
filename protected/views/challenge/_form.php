@@ -1,9 +1,5 @@
 <p class="note"><?php echo Yii::t('app','Fields with');?> <span class="required">*</span> <?php echo Yii::t('app','are required');?>.</p>
 
-
-<?php if(isset($_POST['returnUrl']))
-
-		echo CHtml::hiddenField('returnUrl', $_POST['returnUrl']); ?>
 <?php echo $form->errorSummary($model); ?>
 
 				<div class="row">
@@ -35,7 +31,7 @@
 <?php echo $form->error($model,'type'); ?>
 </div>
 
-<label for="App">Belonging App</label><?php 
+<label for="App">Belonging App</label><?php
 						$this->widget('ext.Relation', array(
 							'model' => $model,
 							'relation' => 'app',
@@ -49,4 +45,3 @@
 
 							)
 						); ?>
-			

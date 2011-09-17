@@ -2,32 +2,36 @@
 
 class TeacherController extends Controller
 {
-	public $layout='//layouts/column2';
+	public $layout='teacher';
 	private $_model;
 
 	public function filters()
 	{
 		return array(
-			'accessControl', 
+			'accessControl',
 		);
 	}
 
 	public function accessRules()
 	{
 		return array(
-			array('allow',  
-				'actions'=>array('index','view'),
+			array('allow',
+				'actions'=>array('login'),
 				'users'=>array('*'),
 			),
-			array('allow', 
-				'actions'=>array('create','update'),
+			array('allow',
+				'actions'=>array(),
 				'users'=>array('@'),
 			),
-			array('allow', 
-				'actions'=>array('admin','delete'),
+            /*array('allow',
+				'actions'=>array('create'),
+				'roles'=>array('student'),
+			),*/
+			array('allow',
+				'actions'=>array('admin','delete','index','view','create','update'),
 				'users'=>array('admin'),
 			),
-			array('deny', 
+			array('deny',
 				'users'=>array('*'),
 			),
 		);
@@ -43,13 +47,14 @@ class TeacherController extends Controller
 	public function actionCreate()
 	{
 		$model=new Teacher;
+        $user=new User;
 
 		foreach($_POST as $key => $value) {
 			if(is_array($value))
 				$_SESSION[$key] = $value;
 		}
 
-		if(isset($_SESSION['Teacher'])) 
+		if(isset($_SESSION['Teacher']))
 			$model->attributes = $_SESSION['Teacher'];
 
 		$this->performAjaxValidation($model);
@@ -66,15 +71,13 @@ class TeacherController extends Controller
 			if($model->save()) {
 				unset($_SESSION['Teacher']);
 
-				if(isset($_POST['returnUrl']))
-					$this->redirect($_POST['returnUrl']); 
-				else
-					$this->redirect(array('view','id'=>$model->id));
+			    $this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+            'user'=>$user
 		));
 	}
 
@@ -110,8 +113,7 @@ class TeacherController extends Controller
 
 			if(!isset($_GET['ajax']))
 			{
-				$returnUrl = $_POST['returnUrl'];
-				$this->redirect(!empty($returnUrl) ? $returnUrl : array('admin'));
+				$this->redirect(array('admin'));
 			}
 		}
 		else
@@ -160,5 +162,33 @@ class TeacherController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /**
+	 * Displays the login page
+	 */
+	public function actionLogin()
+	{
+		$model=new LoginForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login()) {
+                Yii::app()->user->type = WebUser::TYPE_TEACHER;
+				$this->redirect(Yii::app()->user->returnUrl);
+            }
+		}
+		// display the login form
+		$this->render('login',array('model'=>$model));
 	}
 }

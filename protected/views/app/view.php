@@ -19,21 +19,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'user.email',
-		'first_name',
-		'last_name',
+		'name'
 	),
 )); ?>
 
-
-<br /><h2><?php echo Yii::t('app','{relation} that belongs to this {model}',array('{relation}'=>'App', '{model}'=>'App'));?>: </h2>
-<ul><?php foreach($model->apps as $foreignobj) {
-
-				printf('<li>%s</li>', CHtml::link($foreignobj->name, array('app/view', 'id' => $foreignobj->id)));
-
-				} ?></ul><br /><h2><?php echo Yii::t('app','{relation} that belongs to this {model}',array('{relation}'=>'Group', '{model}'=>'App'));?>: </h2>
-<ul><?php foreach($model->groups as $foreignobj) {
-
-				printf('<li>%s</li>', CHtml::link($foreignobj->name, array('group/view', 'id' => $foreignobj->id)));
-
-				} ?></ul>

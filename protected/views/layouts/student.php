@@ -29,8 +29,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'My Games', 'url'=>array('/student/games')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
@@ -43,9 +42,29 @@
 	<?php endif?>
 
     <div class="container">
-        <div id="content">
-            <?php echo $content; ?>
+        <?php if ($this->menu): ?>
+        <div class="span-19">
+            <div id="content">
+                <?php echo $content; ?>
+            </div><!-- content -->
         </div>
+        <div class="span-5 last">
+            <div id="sidebar">
+            <?php
+                $this->beginWidget('zii.widgets.CPortlet', array(
+                    'title'=>'Operations',
+                ));
+                $this->widget('zii.widgets.CMenu', array(
+                    'items'=>$this->menu,
+                    'htmlOptions'=>array('class'=>'operations'),
+                ));
+                $this->endWidget();
+            ?>
+            </div><!-- sidebar -->
+        </div>
+        <?php else: ?>
+            <?php echo $content; ?>
+        <?php endif; ?>
     </div>
 
 	<div id="footer">

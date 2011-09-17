@@ -16,16 +16,21 @@ $this->menu=array(
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'teacher-form',
 	'enableAjaxValidation'=>true,
-)); 
+));
 echo $this->renderPartial('_form', array(
 	'model'=>$model,
 	'form' =>$form
-	)); ?>
+	));
+
+echo $this->renderPartial('/user/_form', array(
+	'model'=>$user,
+	'form' =>$form
+	));?>
 
 <div class="row buttons">
 	<?php
 	$url = array(Yii::app()->request->getQuery('returnTo'));
-	if(empty($url[0])) 
+	if(empty($url[0]))
 		$url = array('teacher/admin');
 echo CHtml::Button(Yii::t('app', 'Cancel'), array('submit' => $url)); ?>&nbsp;
 <?php echo CHtml::submitButton(Yii::t('app', 'Create')); ?>

@@ -2,7 +2,7 @@
 
 class StudentController extends Controller
 {
-	public $layout='//layouts/column2';
+	public $layout='student';
 	private $_model;
 
 	public function filters()
@@ -16,21 +16,26 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','view'),
+				'actions'=>array('login'),
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('create','update'),
+				'actions'=>array(),
 				'users'=>array('@'),
 			),
 			array('allow',
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','index','view','create','update'),
 				'users'=>array('admin'),
 			),
 			array('deny',
 				'users'=>array('*'),
 			),
 		);
+	}
+
+    public function init()
+	{
+		$this->layout = 'student';
 	}
 
 	public function actionView()
@@ -66,10 +71,7 @@ class StudentController extends Controller
 			if($model->save()) {
 				unset($_SESSION['Student']);
 
-				if(isset($_POST['returnUrl']))
-					$this->redirect($_POST['returnUrl']);
-				else
-					$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
@@ -110,8 +112,7 @@ class StudentController extends Controller
 
 			if(!isset($_GET['ajax']))
 			{
-				$returnUrl = $_POST['returnUrl'];
-				$this->redirect(!empty($returnUrl) ? $returnUrl : array('admin'));
+				$this->redirect(array('admin'));
 			}
 		}
 		else
@@ -160,5 +161,51 @@ class StudentController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    /**
+	 * Displays the login page
+	 */
+	public function actionLogin()
+	{
+		$model=new LoginForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login()) {
+                Yii::app()->user->type = WebUser::TYPE_STUDENT;
+				$this->redirect(Yii::app()->user->returnUrl);
+            }
+		}
+		// display the login form
+		$this->render('login',array('model'=>$model));
+	}
+
+    public function actionGames()
+	{
+        $this->menu = array();
+		$dataProvider=new CActiveDataProvider('App');
+		$this->render('games',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+    public function actionGame()
+	{
+        $this->menu = array();
+		$dataProvider=new CActiveDataProvider('App');
+		$this->render('games',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 }

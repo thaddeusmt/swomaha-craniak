@@ -9,7 +9,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->first_name); ?>
+	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
 

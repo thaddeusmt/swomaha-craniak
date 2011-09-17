@@ -2,7 +2,7 @@
 
 class AppController extends Controller
 {
-	public $layout='//layouts/column2';
+	public $layout='teacher';
 	private $_model;
 
 	public function filters()
@@ -62,10 +62,7 @@ class AppController extends Controller
 			if($model->save()) {
 				unset($_SESSION['App']);
 
-				if(isset($_POST['returnUrl']))
-					$this->redirect($_POST['returnUrl']);
-				else
-					$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
@@ -102,8 +99,7 @@ class AppController extends Controller
 
 			if(!isset($_GET['ajax']))
 			{
-				$returnUrl = $_POST['returnUrl'];
-				$this->redirect(!empty($returnUrl) ? $returnUrl : array('admin'));
+				$this->redirect(array('admin'));
 			}
 		}
 		else

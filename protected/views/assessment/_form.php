@@ -1,9 +1,5 @@
 <p class="note"><?php echo Yii::t('app','Fields with');?> <span class="required">*</span> <?php echo Yii::t('app','are required');?>.</p>
 
-
-<?php if(isset($_POST['returnUrl']))
-
-		echo CHtml::hiddenField('returnUrl', $_POST['returnUrl']); ?>
 <?php echo $form->errorSummary($model); ?>
 
 				<div class="row">
@@ -27,7 +23,7 @@
 <?php echo $form->error($model,'assessment_id'); ?>
 </div>
 
-<label for="Challenge">Belonging Challenge</label><?php 
+<label for="Challenge">Belonging Challenge</label><?php
 						$this->widget('ext.Relation', array(
 							'model' => $model,
 							'relation' => 'task',
@@ -41,4 +37,3 @@
 
 							)
 						); ?>
-			

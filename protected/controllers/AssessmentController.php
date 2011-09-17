@@ -2,32 +2,32 @@
 
 class AssessmentController extends Controller
 {
-	public $layout='//layouts/column2';
+	public $layout='teacher';
 	private $_model;
 
 	public function filters()
 	{
 		return array(
-			'accessControl', 
+			'accessControl',
 		);
 	}
 
 	public function accessRules()
 	{
 		return array(
-			array('allow',  
+			array('allow',
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', 
+			array('allow',
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
-			array('allow', 
+			array('allow',
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
-			array('deny', 
+			array('deny',
 				'users'=>array('*'),
 			),
 		);
@@ -49,7 +49,7 @@ class AssessmentController extends Controller
 				$_SESSION[$key] = $value;
 		}
 
-		if(isset($_SESSION['Assessment'])) 
+		if(isset($_SESSION['Assessment']))
 			$model->attributes = $_SESSION['Assessment'];
 
 		$this->performAjaxValidation($model);
@@ -62,10 +62,7 @@ class AssessmentController extends Controller
 			if($model->save()) {
 				unset($_SESSION['Assessment']);
 
-				if(isset($_POST['returnUrl']))
-					$this->redirect($_POST['returnUrl']); 
-				else
-					$this->redirect(array('view','id'=>$model->id));
+			    $this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
@@ -102,8 +99,7 @@ class AssessmentController extends Controller
 
 			if(!isset($_GET['ajax']))
 			{
-				$returnUrl = $_POST['returnUrl'];
-				$this->redirect(!empty($returnUrl) ? $returnUrl : array('admin'));
+				$this->redirect(array('admin'));
 			}
 		}
 		else
