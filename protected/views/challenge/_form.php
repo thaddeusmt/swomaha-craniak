@@ -2,11 +2,6 @@
 
 <?php echo $form->errorSummary($model); ?>
 
-				<div class="row">
-<?php echo $form->labelEx($model,'challenge_id'); ?>
-<?php echo $form->textField($model,'challenge_id',array('size'=>10,'maxlength'=>10)); ?>
-<?php echo $form->error($model,'challenge_id'); ?>
-</div>
 
 		<div class="row">
 <?php echo $form->labelEx($model,'name'); ?>
@@ -16,7 +11,24 @@
 
 		<div class="row">
 <?php echo $form->labelEx($model,'description'); ?>
-<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+<?php
+$this->widget('application.extensions.ckeditor.CKEditorWidget',
+	array(
+		"model"=>$model,				// Data-Model
+		"attribute"=>'description',		// Attribute in the Data-Model
+		"defaultValue"=>$model->description,
+	 
+		// Additional Parameter (Check http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html)
+		"config" => array(
+		"height"=>"200px",
+		"width"=>"100%",
+		"toolbar"=>"Basic",
+	),
+	// Path to ckeditor.php
+	"ckBasePath"=>Yii::app()->baseUrl."/ckeditor/",
+  ) );
+  ?>
+<?php //echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 <?php echo $form->error($model,'description'); ?>
 </div>
 

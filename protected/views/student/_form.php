@@ -43,7 +43,7 @@
 							)
 						); ?>
 			<label for="Group">Belonging Group</label><?php
-						$this->widget('ext.Relation', array(
+				/*		$this->widget('ext.Relation', array(
 							'model' => $model,
 							'relation' => 'groups',
 							'fields' => 'name',
@@ -55,4 +55,6 @@
 								),
 
 							)
-						); ?>
+
+						); */?>
+

@@ -40,7 +40,6 @@ data: $(this).serialize()
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'user_id',
 		'name',
 		array(
 			'class'=>'CButtonColumn',
