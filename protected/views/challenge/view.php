@@ -20,7 +20,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'app.name',
-		'challenge_id',
 		'name',
 		'description',
 		'type',
@@ -29,8 +28,10 @@ $this->menu=array(
 
 
 <br /><h2><?php echo Yii::t('app','{relation} that belongs to this {model}',array('{relation}'=>'Assessment', '{model}'=>'Challenge'));?>: </h2>
-<ul><?php foreach($model->assessments as $foreignobj) { 
-
-				printf('<li>%s</li>', CHtml::link($foreignobj->name, array('assessment/view', 'id' => $foreignobj->id)));
-
-				} ?></ul>
+<ul>
+<?php
+	foreach($model->assessments as $foreignobj) { 
+		printf('<li>%s</li>', CHtml::link($foreignobj->name, array('assessment/view', 'id' => $foreignobj->id)));
+	}
+?>
+</ul>

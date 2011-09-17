@@ -15,12 +15,12 @@ class Challenge extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('app_id, challenge_id, name', 'required'),
-			array('app_id, challenge_id', 'length', 'max'=>10),
+			array('app_id, name', 'required'),
+			array('app_id', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>7),
 			array('description', 'safe'),
-			array('id, app_id, challenge_id, name, description, type', 'safe', 'on'=>'search'),
+			array('id, app_id, name, description, type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +60,6 @@ class Challenge extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 
 		$criteria->compare('app_id',$this->app_id,true);
-
-		$criteria->compare('challenge_id',$this->challenge_id,true);
 
 		$criteria->compare('name',$this->name,true);
 

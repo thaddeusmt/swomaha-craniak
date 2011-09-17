@@ -8,16 +8,12 @@
 	<?php echo CHtml::encode($data->app_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('challenge_id')); ?>:</b>
-	<?php echo CHtml::encode($data->challenge_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
+	<?php echo $data->description; ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
