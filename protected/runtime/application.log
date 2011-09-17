@@ -22,3 +22,507 @@ Stack trace:
 #1 /var/www/yii-1.1.8/framework/base/CApplication.php(158): CWebApplication->processRequest()
 #2 /var/www/swomaha/index.php(13): CApplication->run()
 #3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:43:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:43:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:43:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('gii')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/gii
+2011/09/17 12:43:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:43:51 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\xampp\htdocs\swomaha\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\xampp\htdocs\yii-1.1.8\framework\web\CAssetManager.php:112
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CAssetManager.php(97): CAssetManager->setBasePath('C:\xampp\htdocs...')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\web\CAssetManager.php(207): CAssetManager->getBasePath()
+#2 C:\xampp\htdocs\yii-1.1.8\framework\gii\GiiModule.php(137): CAssetManager->publish('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\yii-1.1.8\framework\base\CComponent.php(112): GiiModule->getAssetsUrl()
+#4 C:\xampp\htdocs\yii-1.1.8\framework\base\CModule.php(88): CComponent->__get('assetsUrl')
+#5 C:\xampp\htdocs\yii-1.1.8\framework\gii\views\layouts\main.php(5): CModule->__get('assetsUrl')
+#6 C:\xampp\htdocs\yii-1.1.8\framework\web\CBaseController.php(119): require('C:\xampp\htdocs...')
+#7 C:\xampp\htdocs\yii-1.1.8\framework\web\CBaseController.php(88): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\widgets\CContentDecorator.php(78): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\widgets\CContentDecorator.php(56): CContentDecorator->decorate('<div class="con...')
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CBaseController.php(199): COutputProcessor->run()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CBaseController.php(294): CBaseController->endWidget('CContentDecorat...')
+#13 C:\xampp\htdocs\yii-1.1.8\framework\gii\views\layouts\column1.php(7): CBaseController->endContent()
+#14 C:\xampp\htdocs\yii-1.1.8\framework\web\CBaseController.php(119): require('C:\xampp\htdocs...')
+#15 C:\xampp\htdocs\yii-1.1.8\framework\web\CBaseController.php(88): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(781): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#17 C:\xampp\htdocs\yii-1.1.8\framework\gii\controllers\DefaultController.php(47): CController->render('login', Array)
+#18 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): DefaultController->actionLogin()
+#19 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): CController->run('login')
+#23 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('gii/default/log...')
+#24 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#25 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#26 {main} REQUEST_URI=/gii/default/login
+2011/09/17 12:43:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:44:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:44:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:44:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:50:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:50:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:51:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:51:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:51:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:52:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:52:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:52:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:53:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:54:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:55:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:55:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:55:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:55:55 [error] [php] include(Award.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\yii-1.1.8\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\db\ar\CActiveRecord.php(371): spl_autoload_call()
+#1 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(70): model()
+#2 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php(32): FullCrudCode->generateRelation()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeModel.php(238): require()
+#4 C:\xampp\htdocs\yii-1.1.8\framework\gii\generators\crud\CrudCode.php(97): FullCrudCode->render()
+#5 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(9): FullCrudCode->prepare()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(158): FullCrudCode->prepare()
+#7 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(61): FullCrudGenerator->prepare()
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): FullCrudGenerator->actionIndex()
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(278): FullCrudGenerator->runAction()
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): FullCrudGenerator->runActionWithFilters()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): FullCrudGenerator->run()
+#13 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\swomaha\index.php(13): CWebApplication->run()
+REQUEST_URI=/gii/fullCrud
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (70)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php (32)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (9)
+2011/09/17 12:55:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:16 [error] [php] include(Award.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\yii-1.1.8\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\db\ar\CActiveRecord.php(371): spl_autoload_call()
+#1 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(70): model()
+#2 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php(32): FullCrudCode->generateRelation()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeModel.php(238): require()
+#4 C:\xampp\htdocs\yii-1.1.8\framework\gii\generators\crud\CrudCode.php(97): FullCrudCode->render()
+#5 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(9): FullCrudCode->prepare()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(158): FullCrudCode->prepare()
+#7 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(61): FullCrudGenerator->prepare()
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): FullCrudGenerator->actionIndex()
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(278): FullCrudGenerator->runAction()
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): FullCrudGenerator->runActionWithFilters()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): FullCrudGenerator->run()
+#13 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\swomaha\index.php(13): CWebApplication->run()
+REQUEST_URI=/gii/fullCrud
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (70)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php (32)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (9)
+2011/09/17 12:56:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:42 [error] [php] include(Award.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\yii-1.1.8\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\db\ar\CActiveRecord.php(371): spl_autoload_call()
+#1 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(70): model()
+#2 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php(32): FullCrudCode->generateRelation()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeModel.php(238): require()
+#4 C:\xampp\htdocs\yii-1.1.8\framework\gii\generators\crud\CrudCode.php(97): FullCrudCode->render()
+#5 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(9): FullCrudCode->prepare()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(158): FullCrudCode->prepare()
+#7 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(61): FullCrudGenerator->prepare()
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): FullCrudGenerator->actionIndex()
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(278): FullCrudGenerator->runAction()
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): FullCrudGenerator->runActionWithFilters()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): FullCrudGenerator->run()
+#13 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\swomaha\index.php(13): CWebApplication->run()
+REQUEST_URI=/gii/fullCrud
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (70)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php (32)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (9)
+2011/09/17 12:56:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:56:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:57:12 [error] [php] include(Award.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\yii-1.1.8\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\db\ar\CActiveRecord.php(371): spl_autoload_call()
+#1 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\view.php(50): model()
+#2 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeModel.php(238): require()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\gii\generators\crud\CrudCode.php(97): FullCrudCode->render()
+#4 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(9): FullCrudCode->prepare()
+#5 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(158): FullCrudCode->prepare()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(61): FullCrudGenerator->prepare()
+#7 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): FullCrudGenerator->actionIndex()
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams()
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(278): FullCrudGenerator->runAction()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): FullCrudGenerator->runActionWithFilters()
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): FullCrudGenerator->run()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#13 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\swomaha\index.php(13): CWebApplication->run()
+REQUEST_URI=/gii/fullCrud
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\view.php (50)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (9)
+in C:\xampp\htdocs\swomaha\index.php (13)
+2011/09/17 12:57:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:57:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:57:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:57:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:58:03 [error] [php] include(Award.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\yii-1.1.8\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\db\ar\CActiveRecord.php(371): spl_autoload_call()
+#1 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(70): model()
+#2 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php(32): FullCrudCode->generateRelation()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeModel.php(238): require()
+#4 C:\xampp\htdocs\yii-1.1.8\framework\gii\generators\crud\CrudCode.php(97): FullCrudCode->render()
+#5 C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php(9): FullCrudCode->prepare()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(158): FullCrudCode->prepare()
+#7 C:\xampp\htdocs\yii-1.1.8\framework\gii\CCodeGenerator.php(61): FullCrudGenerator->prepare()
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): FullCrudGenerator->actionIndex()
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(278): FullCrudGenerator->runAction()
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): FullCrudGenerator->runActionWithFilters()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): FullCrudGenerator->run()
+#13 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\swomaha\index.php(13): CWebApplication->run()
+REQUEST_URI=/gii/fullCrud
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (70)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\templates\default\_form.php (32)
+in C:\xampp\htdocs\swomaha\protected\extensions\gtc\fullCrud\FullCrudCode.php (9)
+2011/09/17 12:58:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:58:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:58:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 12:58:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 13:00:30 [error] [exception.CException] exception 'CException' with message 'AppController cannot find the requested view "index".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php:875
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(779): CController->renderPartial('index', Array, true)
+#1 C:\xampp\htdocs\swomaha\protected\controllers\AppController.php(119): CController->render('index', Array)
+#2 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): AppController->actionIndex()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(283): CFilterChain->run()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): CController->run('')
+#12 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('app')
+#13 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#15 {main} REQUEST_URI=/app
+2011/09/17 13:00:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 13:03:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 13:03:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 13:03:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
