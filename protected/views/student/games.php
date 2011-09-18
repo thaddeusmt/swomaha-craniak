@@ -1,6 +1,5 @@
 <?php
 $this->breadcrumbs = array(
-	'Student',
 	Yii::t('app', 'Games'),
 );
 

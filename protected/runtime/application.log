@@ -1298,3 +1298,46 @@ Stack trace:
 #23 /www/yii-1.1.8/framework/base/CApplication.php(158): CWebApplication->processRequest()
 #24 /www/swomaha/index.php(13): CApplication->run()
 #25 {main} REQUEST_URI=/student/create
+2011/09/17 19:03:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 19:03:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 19:04:14 [error] [php] include(Game.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\xampp\htdocs\yii-1.1.8\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\swomaha\protected\controllers\StudentController.php(205): spl_autoload_call()
+#1 C:\xampp\htdocs\yii-1.1.8\framework\web\actions\CInlineAction.php(50): StudentController->actionGame()
+#2 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(300): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CFilterChain.php(134): StudentController->runAction()
+#4 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(1144): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CInlineFilter.php(59): StudentController->filterAccessControl()
+#7 C:\xampp\htdocs\yii-1.1.8\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#8 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(283): CFilterChain->run()
+#9 C:\xampp\htdocs\yii-1.1.8\framework\web\CController.php(257): StudentController->runActionWithFilters()
+#10 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(277): StudentController->run()
+#11 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#12 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\swomaha\index.php(13): CWebApplication->run()
+REQUEST_URI=/student/game/id/1
+in C:\xampp\htdocs\swomaha\protected\controllers\StudentController.php (205)
+in C:\xampp\htdocs\swomaha\index.php (13)
+2011/09/17 19:04:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico
+2011/09/17 19:04:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php:281
+Stack trace:
+#0 C:\xampp\htdocs\yii-1.1.8\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
+#1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/favicon.ico

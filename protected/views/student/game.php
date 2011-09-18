@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Student'=>array('games'),
-	$model->id,
+	'Games'=>array('games'),
+	$model->name,
 );
 
 ?>

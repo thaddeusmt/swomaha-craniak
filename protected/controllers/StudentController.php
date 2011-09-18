@@ -202,10 +202,9 @@ class StudentController extends Controller
 
     public function actionGame()
 	{
-        $this->menu = array();
-		$dataProvider=new CActiveDataProvider('App');
-		$this->render('games',array(
-			'dataProvider'=>$dataProvider,
+        $model = App::model()->findbyPk($_GET['id']);
+		$this->render('game',array(
+			'model'=>$model,
 		));
 	}
 }
