@@ -60,4 +60,14 @@ class App extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function getPoints() {
+        //$user = User::model()->findbyPk(STUDENTID);
+        $points = Points::model()->findAllByAttributes(array('app_id'=>$this->id,'student_id'=>STUDENTID));
+        $total = 0;
+        foreach ($points as $point) {
+            $total += $point->points;
+        }
+        return $total;
+    }
 }

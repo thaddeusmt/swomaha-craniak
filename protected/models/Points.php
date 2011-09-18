@@ -1,6 +1,6 @@
 <?php
 
-class StudentAnswer extends CActiveRecord
+class Points extends CActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -9,23 +9,24 @@ class StudentAnswer extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'student_answer';
+		return 'points';
 	}
 
 	public function rules()
 	{
 		return array(
-			array('answer_id, student_id, assessment_id', 'required'),
-			array('answer_id, student_id, assessment_id', 'length', 'max'=>10),
-			array('id, answer_id, student_id, assessment_id', 'safe', 'on'=>'search'),
+			array('student_id, app_id, assessment_id, points, date', 'required'),
+			array('points', 'numerical', 'integerOnly'=>true),
+			array('student_id, app_id, assessment_id', 'length', 'max'=>10),
+			array('id, student_id, app_id, assessment_id, points, date', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations()
 	{
 		return array(
-			'answer' => array(self::BELONGS_TO, 'Answer', 'answer_id'),
 			'student' => array(self::BELONGS_TO, 'Student', 'student_id'),
+			'app' => array(self::BELONGS_TO, 'App', 'app_id'),
 			'assessment' => array(self::BELONGS_TO, 'Assessment', 'assessment_id'),
 		);
 	}
@@ -43,33 +44,32 @@ class StudentAnswer extends CActiveRecord
 	{
 		return array(
 			'id' => Yii::t('app', 'ID'),
-			'answer_id' => Yii::t('app', 'Answer'),
 			'student_id' => Yii::t('app', 'Student'),
+			'app_id' => Yii::t('app', 'App'),
 			'assessment_id' => Yii::t('app', 'Assessment'),
+			'points' => Yii::t('app', 'Points'),
+			'date' => Yii::t('app', 'Date'),
 		);
 	}
 
 	public function search()
 	{
 		$criteria=new CDbCriteria;
+
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('answer_id',$this->answer_id,true);
+
 		$criteria->compare('student_id',$this->student_id,true);
+
+		$criteria->compare('app_id',$this->app_id,true);
+
 		$criteria->compare('assessment_id',$this->assessment_id,true);
+
+		$criteria->compare('points',$this->points);
+
+		$criteria->compare('date',$this->date,true);
+
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));
 	}
-
-    public function afterSave() {
-        $points = new Points;
-        if($this->answer->correct) {
-            $points->app_id = $this->assessment->challenge->app_id;
-            $points->assessment_id = $this->assessment_id;
-            $points->student_id = $this->student_id;
-            $points->points = $this->answer->question->points;
-            $points->date = date ("Y-m-d H:i:s", time());
-            $points->save();
-        }
-    }
 }

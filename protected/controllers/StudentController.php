@@ -67,7 +67,7 @@ class StudentController extends Controller
 			$model->attributes = $_POST['Student'];
 			$user->attributes = $_POST['User'];
 			$user->type = 'student';
-			
+
 			/*if(isset($_POST['Student']['Group']))
 				$model->groups = $_POST['Student']['Group'];*/
 
@@ -189,7 +189,7 @@ class StudentController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()) {
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect('/student/games');
             }
 		}
 		// display the login form

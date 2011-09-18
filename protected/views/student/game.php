@@ -8,12 +8,13 @@ $this->breadcrumbs=array(
 
 <h1><?php echo $model->name; ?></h1>
 
-<img src="<?php $model->image ?>" />
+
+<img src="<?php echo $model->image ?>" />
 
 <h2>Challenges</h2>
 <ul>
 <?php foreach($model->challenges as $challenge): ?>
-    <li><?php echo CHtml::link($challenge->name, array('challenge/play','id'=>$challenge->id)) ?></li>
+    <li><?php echo CHtml::link($challenge->name, array('challenge/play','id'=>$challenge->id)) ?> - Your Points: <?php echo $challenge->getPoints() ?></li>
 <?php endforeach; ?>
 </ul>
 

@@ -146,14 +146,13 @@ class ChallengeController extends Controller
     public function actionPlay()
 	{
         $this->layout = 'student';
-        //$model = $this->loadModel();
         $model = Challenge::model()->findbyPk($_GET['id']);
         $assessment = Assessment::model()->findByAttributes(array('task_id'=>$_GET['id']));
 
         $questions = null;
         if($assessment->type == 'quiz') {
             $questions = AssessmentQuestion::model()->findAllByAttributes(array('assessment_id'=>$assessment->id));
-            $studentAnswer = new StudentAnswer;
+
             if(isset($_POST['StudentAnswer']))
             {
                 $answer_id = null;
@@ -169,9 +168,9 @@ class ChallengeController extends Controller
                     $studentAnswer->save();
                     //print_r($studentAnswer->errors);
                 }
-
-
+                $this->redirect(array('/student/game','id'=>$model->id));
             }
+            $studentAnswer = new StudentAnswer;
         } elseif($assessment->type == 'freeform') {
             $freeform = AssessmentFreeform::model()->findByAttributes(array('assessment_id'=>$assessment->id));
             $questions = $freeform->prompt;
@@ -182,10 +181,10 @@ class ChallengeController extends Controller
                 $studentAnswer->assessment_id = $assessment->id;
                 $studentAnswer->student_id = STUDENTID;
                 $studentAnswer->save();
+                $this->redirect(array('/student/game','id'=>$model->id));
             }
+            $studentAnswer = new StudentFreeform;
         }
-
-
 
 		$this->render('play',array(
 			'model'=>$model,
