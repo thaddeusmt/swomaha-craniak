@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 17, 2011 at 01:48 PM
+-- Generation Time: Sep 17, 2011 at 10:42 PM
 -- Server version: 5.1.53
 -- PHP Version: 5.3.4
 
@@ -28,14 +28,25 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `answer` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `question_id` int(10) unsigned NOT NULL,
+  `answer` text NOT NULL,
+  `correct` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_answer_question1` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `answer`
 --
 
+INSERT INTO `answer` (`id`, `question_id`, `answer`, `correct`) VALUES
+(1, 1, '61', 0),
+(2, 1, '53', 1),
+(3, 1, '10', 0),
+(4, 1, '1337', 0),
+(5, 2, 'Titan', 1),
+(6, 2, 'Rhea', 0),
+(9, 2, 'Phoebe', 0),
+(10, 2, 'Ijiraq', 0);
 
 -- --------------------------------------------------------
 
@@ -46,13 +57,16 @@ CREATE TABLE IF NOT EXISTS `answer` (
 CREATE TABLE IF NOT EXISTS `app` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Course module' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Course module' AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `app`
 --
 
+INSERT INTO `app` (`id`, `name`, `image`) VALUES
+(1, 'Solar System', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,15 +79,17 @@ CREATE TABLE IF NOT EXISTS `assessment` (
   `task_id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` enum('quiz','freeform') NOT NULL,
-  `assessment_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_task_assessment_task1` (`task_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `assessment`
 --
 
+INSERT INTO `assessment` (`id`, `task_id`, `name`, `type`) VALUES
+(1, 1, 'Saturn Moons Quiz', 'quiz'),
+(2, 2, 'Essay on our place in the universe', 'freeform');
 
 -- --------------------------------------------------------
 
@@ -83,13 +99,17 @@ CREATE TABLE IF NOT EXISTS `assessment` (
 
 CREATE TABLE IF NOT EXISTS `assessment_freeform` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `assessment_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_assessment_freeform_assessment1` (`assessment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `assessment_freeform`
 --
 
+INSERT INTO `assessment_freeform` (`id`, `assessment_id`) VALUES
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -99,15 +119,20 @@ CREATE TABLE IF NOT EXISTS `assessment_freeform` (
 
 CREATE TABLE IF NOT EXISTS `assessment_question` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `task_assessment_quiz_id` int(10) unsigned NOT NULL,
+  `assessment_id` int(10) unsigned NOT NULL,
   `points` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `prompt` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_assessment_question_assessment1` (`assessment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `assessment_question`
 --
 
+INSERT INTO `assessment_question` (`id`, `assessment_id`, `points`, `prompt`) VALUES
+(1, 1, 12, 'How many moons does Saturn have?'),
+(2, 1, 15, 'Which moon is the biggest?');
 
 -- --------------------------------------------------------
 
@@ -116,35 +141,24 @@ CREATE TABLE IF NOT EXISTS `assessment_question` (
 --
 
 CREATE TABLE IF NOT EXISTS `award` (
-  `id` int(11) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `app_id` int(10) unsigned NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_award_app1` (`app_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `award`
 --
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `award_has_student`
---
-
-CREATE TABLE IF NOT EXISTS `award_has_student` (
-  `award_id` int(11) NOT NULL,
-  `student_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`award_id`,`student_id`),
-  KEY `fk_award_has_student_student1` (`student_id`),
-  KEY `fk_award_has_student_award1` (`award_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `award_has_student`
---
-
+INSERT INTO `award` (`id`, `app_id`, `name`, `image`) VALUES
+(1, 1, 'First Place', '/images/badges/first_place.png'),
+(2, 1, 'Early Riser', '/images/badges/early_riser.png'),
+(3, 1, 'Mystery', '/images/badges/mystery.png'),
+(4, 1, 'Speed Demon', '/images/badges/speed_demon.png'),
+(5, 1, 'Super Win', '/images/badges/super_win.png');
 
 -- --------------------------------------------------------
 
@@ -155,18 +169,20 @@ CREATE TABLE IF NOT EXISTS `award_has_student` (
 CREATE TABLE IF NOT EXISTS `challenge` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `app_id` int(10) unsigned NOT NULL,
-  `challenge_id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text,
-  `type` enum('video','reading','link','lecture') DEFAULT NULL,
+  `description` text NOT NULL,
+  `type` enum('video','reading','link','lecture') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_challenge_app1` (`app_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `challenge`
 --
 
+INSERT INTO `challenge` (`id`, `app_id`, `name`, `description`, `type`) VALUES
+(1, 1, 'Explore the Moons of Saturn', '<p>Read the Wikipedia article below and answer the questions that follow.</p> <p> 	<a href="http://en.wikipedia.org/wiki/Moons_of_Saturn">http://en.wikipedia.org/wiki/Moons_of_Saturn</a></p>', 'reading'),
+(2, 1, 'Scale of the Solar System', '<iframe width="420" height="315" src="http://www.youtube.com/embed/BS88G5WBcfQ" frameborder="0" allowfullscreen></iframe>', 'video');
 
 -- --------------------------------------------------------
 
@@ -176,18 +192,22 @@ CREATE TABLE IF NOT EXISTS `challenge` (
 
 CREATE TABLE IF NOT EXISTS `criteria` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
-  `description` text,
-  `points` int(11) DEFAULT NULL,
-  `task_assessment_freeform_id` int(10) unsigned NOT NULL,
+  `assessment_freeform_id` int(10) unsigned NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `description` text NOT NULL,
+  `points` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_criteria_task_assessment_freeform1` (`task_assessment_freeform_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `fk_criteria_task_assessment_freeform1` (`assessment_freeform_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `criteria`
 --
 
+INSERT INTO `criteria` (`id`, `assessment_freeform_id`, `title`, `description`, `points`) VALUES
+(1, 1, 'Talked about size of earth', 'Compared to other planets', 10),
+(2, 1, 'Covered all planets', '', 10),
+(3, 1, 'Good spelling and grammar', '', 5);
 
 -- --------------------------------------------------------
 
@@ -199,10 +219,36 @@ CREATE TABLE IF NOT EXISTS `group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Group of students' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Group of students' AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `group`
+--
+
+INSERT INTO `group` (`id`, `name`) VALUES
+(1, 'My Students');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `points`
+--
+
+CREATE TABLE IF NOT EXISTS `points` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `student_id` int(10) unsigned NOT NULL,
+  `app_id` int(10) unsigned NOT NULL,
+  `assessment_id` int(10) unsigned NOT NULL,
+  `points` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_points_student1` (`student_id`),
+  KEY `fk_points_app1` (`app_id`),
+  KEY `fk_points_assessment1` (`assessment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `points`
 --
 
 
@@ -220,12 +266,16 @@ CREATE TABLE IF NOT EXISTS `student` (
   `avatar` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_student_user1` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `student`
 --
 
+INSERT INTO `student` (`id`, `user_id`, `first_name`, `last_name`, `avatar`) VALUES
+(1, 1, 'Earthworm', 'Jim', NULL),
+(2, 3, 'Sonic', 'Hedgehog', NULL),
+(3, 4, 'Gordon', 'Freeman', NULL);
 
 -- --------------------------------------------------------
 
@@ -236,7 +286,6 @@ CREATE TABLE IF NOT EXISTS `student` (
 CREATE TABLE IF NOT EXISTS `student_app` (
   `student_id` int(10) unsigned NOT NULL,
   `app_id` int(10) unsigned NOT NULL,
-  `points` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`student_id`,`app_id`),
   KEY `fk_student_has_app_app1` (`app_id`),
   KEY `fk_student_has_app_student1` (`student_id`)
@@ -244,6 +293,30 @@ CREATE TABLE IF NOT EXISTS `student_app` (
 
 --
 -- Dumping data for table `student_app`
+--
+
+INSERT INTO `student_app` (`student_id`, `app_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_award`
+--
+
+CREATE TABLE IF NOT EXISTS `student_award` (
+  `student_id` int(10) unsigned NOT NULL,
+  `award_id` int(10) unsigned NOT NULL,
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`student_id`,`award_id`),
+  KEY `fk_student_has_award_award1` (`award_id`),
+  KEY `fk_student_has_award_student1` (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student_award`
 --
 
 
@@ -265,6 +338,10 @@ CREATE TABLE IF NOT EXISTS `student_group` (
 -- Dumping data for table `student_group`
 --
 
+INSERT INTO `student_group` (`student_id`, `group_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -279,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `last_name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_teacher_user1` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `teacher`
@@ -298,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `teacher_app` (
   PRIMARY KEY (`teacher_id`,`app_id`),
   KEY `fk_teacher_has_app_app1` (`app_id`),
   KEY `fk_teacher_has_app_teacher` (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacher_app`
@@ -317,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `teacher_group` (
   PRIMARY KEY (`teacher_id`,`group_id`),
   KEY `fk_teacher_has_group_group1` (`group_id`),
   KEY `fk_teacher_has_group_teacher1` (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacher_group`
@@ -334,14 +411,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `type` enum('teacher','student') NOT NULL,
-  `password` varchar(64) DEFAULT NULL,
+  `password` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user`
 --
 
+INSERT INTO `user` (`id`, `email`, `type`, `password`) VALUES
+(1, 'student@email.com', 'student', 'student'),
+(2, 'teacher@email.com', 'teacher', 'student'),
+(3, 'student2@email.com', 'student', 'student2'),
+(4, 'student3@email.com', 'student', 'student3');
 
 --
 -- Constraints for dumped tables
@@ -357,62 +439,89 @@ ALTER TABLE `answer`
 -- Constraints for table `assessment`
 --
 ALTER TABLE `assessment`
-  ADD CONSTRAINT `fk_task_assessment_task1` FOREIGN KEY (`task_id`) REFERENCES `challenge` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_task_assessment_task1` FOREIGN KEY (`task_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `assessment_freeform`
+--
+ALTER TABLE `assessment_freeform`
+  ADD CONSTRAINT `fk_assessment_freeform_assessment1` FOREIGN KEY (`assessment_id`) REFERENCES `assessment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `assessment_question`
+--
+ALTER TABLE `assessment_question`
+  ADD CONSTRAINT `fk_assessment_question_assessment1` FOREIGN KEY (`assessment_id`) REFERENCES `assessment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `award`
 --
 ALTER TABLE `award`
-  ADD CONSTRAINT `fk_award_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `award_has_student`
---
-ALTER TABLE `award_has_student`
-  ADD CONSTRAINT `fk_award_has_student_award1` FOREIGN KEY (`award_id`) REFERENCES `award` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_award_has_student_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_award_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `challenge`
 --
 ALTER TABLE `challenge`
-  ADD CONSTRAINT `fk_challenge_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_challenge_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `criteria`
 --
 ALTER TABLE `criteria`
-  ADD CONSTRAINT `fk_criteria_task_assessment_freeform1` FOREIGN KEY (`task_assessment_freeform_id`) REFERENCES `assessment_freeform` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_criteria_task_assessment_freeform1` FOREIGN KEY (`assessment_freeform_id`) REFERENCES `assessment_freeform` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `points`
+--
+ALTER TABLE `points`
+  ADD CONSTRAINT `fk_points_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_points_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_points_assessment1` FOREIGN KEY (`assessment_id`) REFERENCES `assessment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `fk_student_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_student_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_app`
 --
 ALTER TABLE `student_app`
-  ADD CONSTRAINT `fk_student_has_app_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_student_has_app_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_student_has_app_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_student_has_app_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student_award`
+--
+ALTER TABLE `student_award`
+  ADD CONSTRAINT `fk_student_has_award_award1` FOREIGN KEY (`award_id`) REFERENCES `award` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_student_has_award_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student_group`
+--
+ALTER TABLE `student_group`
+  ADD CONSTRAINT `fk_student_has_group_group1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_student_has_group_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD CONSTRAINT `fk_teacher_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_teacher_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_app`
 --
 ALTER TABLE `teacher_app`
-  ADD CONSTRAINT `fk_teacher_has_app_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_teacher_has_app_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_teacher_has_app_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_teacher_has_app_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_group`
 --
 ALTER TABLE `teacher_group`
-  ADD CONSTRAINT `fk_teacher_has_group_group1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_teacher_has_group_teacher1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_teacher_has_group_teacher1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_teacher_has_group_group1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON UPDATE CASCADE;

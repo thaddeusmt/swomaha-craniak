@@ -1,6 +1,6 @@
 <?php
 
-class Challenge extends CActiveRecord
+class Award extends CActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -9,26 +9,24 @@ class Challenge extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'challenge';
+		return 'award';
 	}
 
 	public function rules()
 	{
 		return array(
-			array('app_id, name, type, description', 'required'),
+			array('id, app_id', 'required'),
+			array('id', 'numerical', 'integerOnly'=>true),
 			array('app_id', 'length', 'max'=>10),
-			array('name', 'length', 'max'=>255),
-			array('type', 'length', 'max'=>7),
-			array('description', 'safe'),
-			array('id, app_id, name, description, type', 'safe', 'on'=>'search'),
+			array('id, app_id', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations()
 	{
 		return array(
-			'assessments' => array(self::HAS_MANY, 'Assessment', 'task_id'),
 			'app' => array(self::BELONGS_TO, 'App', 'app_id'),
+			'students' => array(self::MANY_MANY, 'Student', 'award_has_student(award_id, student_id)'),
 		);
 	}
 
@@ -46,10 +44,6 @@ class Challenge extends CActiveRecord
 		return array(
 			'id' => Yii::t('app', 'ID'),
 			'app_id' => Yii::t('app', 'App'),
-			'challenge_id' => Yii::t('app', 'Challenge'),
-			'name' => Yii::t('app', 'Name'),
-			'description' => Yii::t('app', 'Description'),
-			'type' => Yii::t('app', 'Type'),
 		);
 	}
 
@@ -57,15 +51,9 @@ class Challenge extends CActiveRecord
 	{
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('id',$this->id);
 
 		$criteria->compare('app_id',$this->app_id,true);
-
-		$criteria->compare('name',$this->name,true);
-
-		$criteria->compare('description',$this->description,true);
-
-		$criteria->compare('type',$this->type,true);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,

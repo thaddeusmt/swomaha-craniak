@@ -24,7 +24,6 @@ return array(
     // application components
     'components'=>array(
         'user'=>array(
-            'class'=>'CWebUser',
             // enable cookie-based authentication
             'allowAutoLogin'=>true,
         ),

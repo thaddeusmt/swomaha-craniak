@@ -70,4 +70,13 @@ class Student extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+
+    public function giveAward($name) {
+
+    }
+
+    public function givePoints($points) {
+
+    }
 }
