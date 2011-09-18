@@ -2,7 +2,7 @@
 
 class AssessmentController extends Controller
 {
-	public $layout='teacher';
+	public $layout='main';
 	private $_model;
 
 	public function filters()
@@ -38,27 +38,27 @@ class AssessmentController extends Controller
 		$models['Assessment'] = $this->loadModel();
 		$models['AssessmentQuestion'] = AssessmentQuestion::model()->findAllByAttributes(array('assessment_id'=>$_GET['id']));
 		$models['AssessmentFreeform'] = AssessmentFreeform::model()->findAllByAttributes(array('assessment_id'=>$_GET['id']));
-		
+
 		$this->render('view',array(
 			'model'=>$models
 		));
 	}
-	
+
 	public function actionFreeFormView() {
 		$this->render('freeFormView',array(
 			'model'=>$this->loadModel()
 		));
 	}
-	
+
 	public function actionAddFreeform() {
 		$assessment = Assessment::model()->findbyPk($_GET['id']);
 		$freeform=new AssessmentFreeform;
 		$freeform->attributes = $_POST['AssessmentFreeform'];
-		
+
 		if(isset($_POST['AssessmentFreeform']) && isset($_SESSION['assessment_id'])) {
-			
+
 			$criteria = $_POST['Criteria'];
-			
+
 			$freeform->assessment_id = $_SESSION['assessment_id'];
 
 			// Save questions
@@ -79,23 +79,23 @@ class AssessmentController extends Controller
 				}
 			}
 		}
-		
+
 		$_SESSION['assessment_id'] = $assessment->id;
 
 		$this->render('addFreeForm',array(
 			'model'=>$freeform
 		));
 	}
-	
+
 	public function actionAddMultipleChoice() {
 		$assessment = Assessment::model()->findbyPk($_GET['id']);
 		$question=new AssessmentQuestion;
 		$question->attributes = $_POST['AssessmentQuestion'];
-		
+
 		if(isset($_POST['AssessmentQuestion']) && isset($_SESSION['assessment_id'])) {
-			
+
 			$answers = $_POST['Answer'];
-			
+
 			$question->assessment_id = $_SESSION['assessment_id'];
 
 			// Save questions
@@ -116,7 +116,7 @@ class AssessmentController extends Controller
 				}
 			}
 		}
-		
+
 		$_SESSION['assessment_id'] = $assessment->id;
 
 		$this->render('addMultipleChoice',array(

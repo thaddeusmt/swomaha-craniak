@@ -2,7 +2,7 @@
 
 class StudentController extends Controller
 {
-	public $layout='student';
+	public $layout='main';
 	private $_model;
 
 	public function filters()

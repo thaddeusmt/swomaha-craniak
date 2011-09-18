@@ -2,7 +2,7 @@
 
 class ChallengeController extends Controller
 {
-	public $layout='teacher';
+	public $layout='main';
 	private $_model;
 
 	public function filters()

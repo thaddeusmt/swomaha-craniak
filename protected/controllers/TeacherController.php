@@ -2,7 +2,7 @@
 
 class TeacherController extends Controller
 {
-	public $layout='teacher';
+	public $layout='main';
 	private $_model;
 
 	public function filters()
@@ -49,14 +49,6 @@ class TeacherController extends Controller
 		$model=new Teacher;
         $user=new User;
 
-		foreach($_POST as $key => $value) {
-			if(is_array($value))
-				$_SESSION[$key] = $value;
-		}
-
-		if(isset($_SESSION['Teacher']))
-			$model->attributes = $_SESSION['Teacher'];
-
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Teacher']))
@@ -69,7 +61,6 @@ class TeacherController extends Controller
 				$model->groups = $_POST['Teacher']['Group'];
 
 			if($model->save()) {
-				unset($_SESSION['Teacher']);
 
 			    $this->redirect(array('view','id'=>$model->id));
 			}
@@ -189,5 +180,14 @@ class TeacherController extends Controller
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
+	}
+
+    public function actionGames()
+	{
+        $this->menu = array();
+		$dataProvider=new CActiveDataProvider('App');
+		$this->render('games',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 }

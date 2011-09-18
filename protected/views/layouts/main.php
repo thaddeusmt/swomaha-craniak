@@ -29,9 +29,14 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Marketplace', 'url'=>array('/site/page', 'view'=>'marketplace')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+                array('label'=>'My Games', 'url'=>array('/student/games'),'visible'=>Yii::app()->user->name=='student'),
+
+                array('label'=>'My Games', 'url'=>array('/teacher/games'),'visible'=>Yii::app()->user->name=='teacher'),
+				array('label'=>'Game Builder', 'url'=>array('/app/create'),'visible'=>Yii::app()->user->name=='teacher'),
+
+				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Marketplace', 'url'=>array('/site/page', 'view'=>'marketplace'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Student Login', 'url'=>array('/student/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Teacher Login', 'url'=>array('/teacher/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
