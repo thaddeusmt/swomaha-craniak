@@ -31,14 +31,8 @@ $this->breadcrumbs=array(
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 		<p class="hint">
-			Hint: You may login with <tt>demo/demo</tt> or <tt>admin/admin</tt>.
+			Hint: You may login with <tt>teacher/teacher</tt>.
 		</p>
-	</div>
-
-	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
-		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
 	<div class="row buttons">

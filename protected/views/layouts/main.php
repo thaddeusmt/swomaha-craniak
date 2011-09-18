@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+    <link rel="shortcut icon" href="/images/favicon.ico">
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
@@ -22,9 +23,10 @@
     <div id="header">
         <div id="header_left"></div>
         <div id="header_right"></div>
-        <div id="header_slogan">A courseware gamification company.</div>
+        <div id="header_slogan">Level up your brain!</div>
         <div id="nav_wrapper">
             <div id="nav_bar_left"></div>
+            <div id="nav_bar_center_wrapper">
             <?php $this->widget('zii.widgets.CMenu',array(
                 'id'=>'nav_bar_center',
                 'firstItemCssClass'=>'first_nav_button',
@@ -39,14 +41,15 @@
                     array('label'=>'My Games', 'url'=>array('/app'),'visible'=>Yii::app()->user->name=='teacher','itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Game Builder', 'url'=>array('/app/create'),'visible'=>Yii::app()->user->name=='teacher','itemOptions'=>array('class'=>'nav_button')),
 
-                    array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
-                    array('label'=>'Marketplace', 'url'=>array('/site/page', 'view'=>'marketplace'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
-                    array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
+                    //  array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
+                    //array('label'=>'Marketplace', 'url'=>array('/site/page', 'view'=>'marketplace'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
+                    //array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Student Login', 'url'=>array('/student/login'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Teacher Login', 'url'=>array('/teacher/login'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button'))
                 ),
             )); ?>
+            </div>
             <div id="nav_bar_right"></div>
         </div>
     </div>
