@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Challenges'=>array('index'),
-	$model->name,
+	$model['Challenge']->name,
 );
 
 $this->menu=array(
@@ -12,18 +12,21 @@ $this->menu=array(
 	array('label'=>Yii::t('app', 'Manage') . ' Challenge', 'url'=>array('admin')),
 );
 ?>
-
-<?php echo $this->renderPartial('_view', array(
-	'model'=>$model,
-	'form' =>$form
-)); ?>
-
-
-<h2><?php echo Yii::t('app','{relation} ',array('{relation}'=>'Assessment', '{model}'=>'Challenge'));?></h2>
-<ul>
-<?php
-	foreach($model->assessments as $foreignobj) { 
-		printf('<li>%s</li>', CHtml::link($foreignobj->name, array('assessment/view', 'id' => $foreignobj->id)));
+<div style="margin:20px 0px;padding:10px;border:1px solid #555;-moz-border-radius:4px;border-radius:4px;background:#efefef;">
+	<h2>Challenge</h2> 
+	<?php echo $this->renderPartial('_view', array(
+		'model'=>$model['Challenge'],
+		'form' =>$form,
+		'link' =>false
+	)); 
+	
+	if($model['Assessment'] != null) {?>
+		<h2>Assessment</h2>
+	<?php echo $this->renderPartial('/assessment/_view', array(
+				'data'=>$model['Assessment'],
+				'form' =>$form,
+				'link' => true
+		));
 	}
-?>
-</ul>
+	?>
+</div>
