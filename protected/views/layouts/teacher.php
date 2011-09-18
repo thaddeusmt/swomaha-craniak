@@ -44,6 +44,7 @@
 	<?php endif?>
 
 	<div class="container">
+        <?php if ($this->menu): ?>
         <div class="span-19">
             <div id="content">
                 <?php echo $content; ?>
@@ -63,6 +64,11 @@
             ?>
             </div><!-- sidebar -->
         </div>
+        <?php else: ?>
+            <div id="content">
+                <?php echo $content; ?>
+            </div><!-- content -->
+        <?php endif; ?>
     </div>
 
 	<div id="footer">

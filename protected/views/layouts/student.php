@@ -63,7 +63,9 @@
             </div><!-- sidebar -->
         </div>
         <?php else: ?>
-            <?php echo $content; ?>
+            <div id="content">
+                <?php echo $content; ?>
+            </div><!-- content -->
         <?php endif; ?>
     </div>
 
