@@ -23,3 +23,17 @@
 	?>
 	<?php echo $form->error($model,'prompt'); ?>
 </div>
+<div class="form">
+<table style="width:inherit;">
+	<thead>
+		<tr><th></th><th>Criteria</th><th>Point Value</th></tr>
+	</thead>
+<?php for($i = 1; $i <= 3; $i++) {?>
+	<tr>
+		<th><?php echo $i;?></th>
+		<td><?php echo CHtml::activeTextField(Criteria::model(),"[$i]title",array('size'=>40)); ?></td>
+		<td><?php echo CHtml::activeTextField(Criteria::model(),"[$i]points",array('size'=>5)); ?></td>
+	</tr>
+<?php }?>
+</table>
+</div>

@@ -15,12 +15,12 @@ class Criteria extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('task_assessment_freeform_id', 'required'),
+			array('assessment_freeform_id', 'required'),
 			array('points', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>45),
-			array('task_assessment_freeform_id', 'length', 'max'=>10),
+			array('assessment_freeform_id', 'length', 'max'=>10),
 			array('description', 'safe'),
-			array('id, title, description, points, task_assessment_freeform_id', 'safe', 'on'=>'search'),
+			array('id, title, description, points, assessment_freeform_id', 'safe', 'on'=>'search'),
 		);
 	}
 

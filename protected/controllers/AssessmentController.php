@@ -51,38 +51,49 @@ class AssessmentController extends Controller
 	}
 	
 	public function actionAddFreeform() {
-		$model=new AssessmentFreeform;
 		$assessment = Assessment::model()->findbyPk($_GET['id']);
+		$freeform=new AssessmentFreeform;
+		$freeform->attributes = $_POST['AssessmentFreeform'];
+		
+		if(isset($_POST['AssessmentFreeform']) && isset($_SESSION['assessment_id'])) {
+			
+			$criteria = $_POST['Criteria'];
+			
+			$freeform->assessment_id = $_SESSION['assessment_id'];
 
-		//$this->performAjaxValidation($model);
-
-		if(isset($_POST['AssessmentFreeform']) && isset($_SESSION['assessment_id']))
-		{
-			$model->attributes = $_POST['AssessmentFreeform'];
-			$model->assessment_id = $_SESSION['assessment_id'];
-
-			if($model->save()) {
-				unset($_SESSION['assessment_id']);
-			    $this->redirect(array('view','id'=>$assessment->id));
+			// Save questions
+			if($freeform->save()) {
+				// Save all answers
+				$successful = true;
+				foreach($criteria as $c) {
+					$criterion = new Criteria;
+					$criterion->attributes = $c;
+					$criterion->assessment_freeform_id = $freeform->id;
+					if(!$criterion->save()) {
+						$successful = false;
+					}
+				}
+				if ($successful) {
+					unset($_SESSION['assessment_id']);
+			    	$this->redirect(array('view','id'=>$assessment->id));
+				}
 			}
 		}
 		
 		$_SESSION['assessment_id'] = $assessment->id;
 
-		$this->render('addFreeform',array(
-			'model'=>$model
+		$this->render('addFreeForm',array(
+			'model'=>$freeform
 		));
 	}
 	
 	public function actionAddMultipleChoice() {
-		$question=new AssessmentQuestion;
 		$assessment = Assessment::model()->findbyPk($_GET['id']);
+		$question=new AssessmentQuestion;
+		$question->attributes = $_POST['AssessmentQuestion'];
 		
-		//print_r($_POST);
-
-		if(isset($_POST['AssessmentQuestion']) && isset($_SESSION['assessment_id']))
-		{
-			$question->attributes = $_POST['AssessmentQuestion'];
+		if(isset($_POST['AssessmentQuestion']) && isset($_SESSION['assessment_id'])) {
+			
 			$answers = $_POST['Answer'];
 			
 			$question->assessment_id = $_SESSION['assessment_id'];
@@ -97,14 +108,11 @@ class AssessmentController extends Controller
 					$answer->question_id = $question->id;
 					if(!$answer->save()) {
 						$successful = false;
-						echo $answer->answer.'<br/>';
 					}
 				}
 				if ($successful) {
 					unset($_SESSION['assessment_id']);
 			    	$this->redirect(array('view','id'=>$assessment->id));
-				} else {
-					
 				}
 			}
 		}
