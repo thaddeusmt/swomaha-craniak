@@ -1,24 +1,14 @@
-<div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('app_id')); ?>:</b>
-	<?php echo CHtml::encode($data->app_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo $data->description; ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
-	<?php echo CHtml::encode($data->type); ?>
-	<br />
-
-
+<?php
+$data = ($model == null) ? $data : $model;
+if ($link) {
+	$title = '<a href="/challenge/view/id/'.$data->id.'">'.$data->name.'</a>';
+	$description = '';
+} else {
+	$title = $model->name;
+	$description = $model->description;
+}
+?>
+<div class="challenge" style="margin:8px 0px;padding:5px;border:1px solid #666;-moz-border-radius:4px;-border-radius:4px;background-color:#fefefe;">
+	<h2><?php echo $title;?></h2>
+	<?php echo $description;?>
 </div>

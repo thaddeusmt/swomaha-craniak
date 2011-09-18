@@ -13,21 +13,13 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Challenge #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'app.name',
-		'name',
-		'description',
-		'type',
-	),
+<?php echo $this->renderPartial('_view', array(
+	'model'=>$model,
+	'form' =>$form
 )); ?>
 
 
-<br /><h2><?php echo Yii::t('app','{relation} that belongs to this {model}',array('{relation}'=>'Assessment', '{model}'=>'Challenge'));?>: </h2>
+<h2><?php echo Yii::t('app','{relation} ',array('{relation}'=>'Assessment', '{model}'=>'Challenge'));?></h2>
 <ul>
 <?php
 	foreach($model->assessments as $foreignobj) { 
