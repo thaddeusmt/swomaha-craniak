@@ -24,7 +24,7 @@ class StudentController extends Controller
 				'users'=>array('@'),
 			),
             array('allow',
-				'actions'=>array('login','game','games'),
+				'actions'=>array('login','game','games','profile'),
 				'users'=>array('student'),
 			),
 			array('allow',
@@ -208,6 +208,18 @@ class StudentController extends Controller
         $model = App::model()->findbyPk($_GET['id']);
 		$this->render('game',array(
 			'model'=>$model,
+		));
+	}
+
+    public function actionProfile()
+	{
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+        } else {
+            $id = STUDENTID;
+        }
+		$this->render('profile',array(
+			'model'=>Student::model()->findbyPk($id),
 		));
 	}
 }

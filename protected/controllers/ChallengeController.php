@@ -148,7 +148,6 @@ class ChallengeController extends Controller
 
     public function actionPlay()
 	{
-        $this->layout = 'student';
         $model = Challenge::model()->findbyPk($_GET['id']);
         $assessment = Assessment::model()->findByAttributes(array('task_id'=>$_GET['id']));
 
@@ -170,8 +169,22 @@ class ChallengeController extends Controller
                     $studentAnswer->student_id = STUDENTID;
                     $studentAnswer->save();
                     //print_r($studentAnswer->errors);
+
+
                 }
-                $this->redirect(array('/student/game','id'=>$model->id));
+                // if there is a badge for this game, award it
+                if ($award = $assessment->award) {
+                    $studentAward = new StudentAward;
+                    $studentAward->award_id = $award->id;
+                    $studentAward->student_id = STUDENTID;
+                    $studentAward->date = date ("Y-m-d H:i:s", time());
+                    if($studentAward->save()) {
+                        Yii::app()->user->setFlash('award',$award);
+                    }
+
+                }
+
+                $this->redirect(array('/student/game','id'=>$model->app_id));
             }
             $studentAnswer = new StudentAnswer;
         } elseif($assessment->type == 'freeform') {
@@ -184,7 +197,20 @@ class ChallengeController extends Controller
                 $studentAnswer->assessment_id = $assessment->id;
                 $studentAnswer->student_id = STUDENTID;
                 $studentAnswer->save();
-                $this->redirect(array('/student/game','id'=>$model->id));
+
+                // if there is a badge for this game, award it
+                if ($award = $assessment->award) {
+                    $studentAward = new StudentAward;
+                    $studentAward->award_id = $award->id;
+                    $studentAward->student_id = STUDENTID;
+                    $studentAward->date = date ("Y-m-d H:i:s", time());
+                    if($studentAward->save()) {
+                        Yii::app()->user->setFlash('award',$award);
+                    }
+
+                }
+
+                $this->redirect(array('/student/game','id'=>$model->app_id));
             }
             $studentAnswer = new StudentFreeform;
         }

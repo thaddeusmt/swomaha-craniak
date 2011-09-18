@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 18, 2011 at 03:02 AM
+-- Generation Time: Sep 18, 2011 at 12:00 PM
 -- Server version: 5.1.53
 -- PHP Version: 5.3.4
 
@@ -58,15 +58,17 @@ CREATE TABLE IF NOT EXISTS `app` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Course module' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Course module' AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `app`
 --
 
-INSERT INTO `app` (`id`, `name`, `image`) VALUES
-(1, 'Solar System', '/images/challenges/solarsystem.jpg');
+INSERT INTO `app` (`id`, `name`, `image`, `description`) VALUES
+(1, 'Solar System', '/images/challenges/solarsystem.jpg', NULL),
+(2, 'My APp', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,17 +81,19 @@ CREATE TABLE IF NOT EXISTS `assessment` (
   `task_id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` enum('quiz','freeform') NOT NULL,
+  `award_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_task_assessment_task1` (`task_id`)
+  KEY `fk_task_assessment_task1` (`task_id`),
+  KEY `fk_assessment_award1` (`award_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `assessment`
 --
 
-INSERT INTO `assessment` (`id`, `task_id`, `name`, `type`) VALUES
-(1, 1, 'Saturn Moons Quiz', 'quiz'),
-(2, 2, 'Essay on our place in the universe', 'freeform');
+INSERT INTO `assessment` (`id`, `task_id`, `name`, `type`, `award_id`) VALUES
+(1, 1, 'Saturn Moons Quiz', 'quiz', 4),
+(2, 2, 'Essay on our place in the universe', 'freeform', 2);
 
 -- --------------------------------------------------------
 
@@ -182,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `challenge` (
 --
 
 INSERT INTO `challenge` (`id`, `app_id`, `name`, `description`, `type`) VALUES
-(1, 1, 'Explore the Moons of Saturn', '<p>Read the Wikipedia article below and answer the questions that follow.</p> <p> 	<a href="http://en.wikipedia.org/wiki/Moons_of_Saturn">http://en.wikipedia.org/wiki/Moons_of_Saturn</a></p>', 'reading'),
+(1, 1, 'Explore the Moons of Saturn', '<iframe width="560" height="315" src="http://www.youtube.com/embed/YQdjFqPWofA" frameborder="0" allowfullscreen></iframe>\r\n<p>Read the Wikipedia article below and answer the questions that follow.</p> <p> 	<a href="http://en.wikipedia.org/wiki/Moons_of_Saturn">http://en.wikipedia.org/wiki/Moons_of_Saturn</a></p>', 'reading'),
 (2, 1, 'Scale of the Solar System', '<iframe width="420" height="315" src="http://www.youtube.com/embed/BS88G5WBcfQ" frameborder="0" allowfullscreen></iframe>', 'video');
 
 -- --------------------------------------------------------
@@ -246,12 +250,14 @@ CREATE TABLE IF NOT EXISTS `points` (
   KEY `fk_points_student1` (`student_id`),
   KEY `fk_points_app1` (`app_id`),
   KEY `fk_points_assessment1` (`assessment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `points`
 --
 
+INSERT INTO `points` (`id`, `student_id`, `app_id`, `assessment_id`, `points`, `date`) VALUES
+(1, 1, 1, 1, 12, '2011-09-18 09:23:49');
 
 -- --------------------------------------------------------
 
@@ -274,9 +280,9 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`id`, `user_id`, `first_name`, `last_name`, `avatar`) VALUES
-(1, 1, 'Earthworm', 'Jim', NULL),
-(2, 3, 'Sonic', 'Hedgehog', NULL),
-(3, 4, 'Gordon', 'Freeman', NULL);
+(1, 1, 'Earthworm', 'Jim', '/images/avatars/thing.png'),
+(2, 3, 'Sonic', 'Hedgehog', '/images/avatars/girl.png'),
+(3, 4, 'Gordon', 'Freeman', '/images/avatars/boy.png');
 
 -- --------------------------------------------------------
 
@@ -295,12 +301,25 @@ CREATE TABLE IF NOT EXISTS `student_answer` (
   KEY `fk_student_answer_student1` (`student_id`),
   KEY `fk_student_answer_assessment1` (`assessment_id`),
   KEY `fk_student_answer_assessment_question1` (`assessment_question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `student_answer`
 --
 
+INSERT INTO `student_answer` (`id`, `answer_id`, `student_id`, `assessment_id`, `assessment_question_id`) VALUES
+(1, 2, 1, 1, 1),
+(2, 5, 1, 1, 2),
+(3, 2, 1, 1, 1),
+(4, 6, 1, 1, 2),
+(5, 3, 1, 1, 1),
+(6, 6, 1, 1, 2),
+(7, 2, 1, 1, 1),
+(8, 9, 1, 1, 2),
+(9, 2, 1, 1, 1),
+(10, 9, 1, 1, 2),
+(11, 2, 1, 1, 1),
+(12, 5, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -339,12 +358,14 @@ CREATE TABLE IF NOT EXISTS `student_award` (
   PRIMARY KEY (`id`),
   KEY `fk_student_award_award1` (`award_id`),
   KEY `fk_student_award_student1` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `student_award`
 --
 
+INSERT INTO `student_award` (`id`, `award_id`, `student_id`, `date`) VALUES
+(1, 1, 1, '2011-09-18 11:27:29');
 
 -- --------------------------------------------------------
 
@@ -360,12 +381,15 @@ CREATE TABLE IF NOT EXISTS `student_freeform` (
   PRIMARY KEY (`id`),
   KEY `fk_student_freeform_assessment1` (`assessment_id`),
   KEY `fk_student_freeform_student1` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `student_freeform`
 --
 
+INSERT INTO `student_freeform` (`id`, `submission`, `assessment_id`, `student_id`) VALUES
+(2, '<p>\r\n	My Big long Essay</p>\r\n', 2, 1),
+(3, '<p>\r\n	fdg esrgs re</p>\r\n', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -486,6 +510,7 @@ ALTER TABLE `answer`
 -- Constraints for table `assessment`
 --
 ALTER TABLE `assessment`
+  ADD CONSTRAINT `fk_assessment_award1` FOREIGN KEY (`award_id`) REFERENCES `award` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_task_assessment_task1` FOREIGN KEY (`task_id`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

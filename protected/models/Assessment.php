@@ -27,6 +27,7 @@ class Assessment extends CActiveRecord
 	{
 		return array(
 			'challenge' => array(self::BELONGS_TO, 'Challenge', 'task_id'),
+            'award' => array(self::BELONGS_TO, 'Award', 'task_id'),
 		);
 	}
 
