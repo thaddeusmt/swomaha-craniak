@@ -60,6 +60,7 @@ class AppController extends Controller
 		if(isset($_POST['App']))
 		{
 			$model->attributes = $_POST['App'];
+			
 
 
 			if($model->save()) {

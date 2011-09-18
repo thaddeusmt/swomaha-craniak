@@ -17,7 +17,7 @@ body {height: 100%; margin: 0; text-align: left; color: #000; font-family: calib
 .nav_button a { display:block; overflow: hidden; padding: 0 20px  ; line-height: 45px; background: transparent url(../images/nav_button_active.png) no-repeat top left; }
 .nav_button a:hover {background: transparent url(../images/nav_button_hover.png) no-repeat top left}
 
-#main_container {position: relative; top: 20px; width: 974px; margin: 0px auto}
+#main_container {overflow:auto;position: relative; top: 20px; width: 974px; margin: 0px auto}
 #welcome_wrapper {position: relative; width: 100%; height: 220px}
 #welcome_message {position: absolute; top: 0px; left: 0px; width: 645px; height: 210px; background: transparent url(../images/welcome_msg.gif) no-repeat top left}
 #badge_box {position: absolute; top: 0px; right: 0px; width: 318px; height: 158px; background: #FFF url(../images/badge_box.jpg) no-repeat top left; border: solid 1px #4AC50F}

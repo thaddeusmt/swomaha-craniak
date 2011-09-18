@@ -64,6 +64,7 @@ class ChallengeController extends Controller
 		if(isset($_POST['Challenge']))
 		{
 			$model->attributes = $_POST['Challenge'];
+			$model->app_id = $_GET['id'];
 
 			if($model->save()) {
 

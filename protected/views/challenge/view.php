@@ -22,11 +22,14 @@ $this->menu=array(
 	
 	if($model['Assessment'] != null) {?>
 		<h2>Assessment</h2>
-	<?php echo $this->renderPartial('/assessment/_view', array(
+		<?php echo $this->renderPartial('/assessment/_view', array(
 				'data'=>$model['Assessment'],
 				'form' =>$form,
 				'link' => true
 		));
+	} else {
+		echo '<p style="margin:14px;">No assessment was found for this challenge.</p>';
 	}
 	?>
 </div>
+<div class="actions" style="margin-bottom:20px;float:right;clear:right;"><a href="/assessment/create/id/<?php echo $model['Challenge']->id; ?>" style="-moz-border-radius:8px;border-radius:8px;border:1px solid #888;display:inline-block;padding:6px 6px 6px 34px;background:#eee url(/images/add.png) no-repeat 4px 50%;">Add Assessment</a></div>

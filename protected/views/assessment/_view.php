@@ -15,8 +15,26 @@ if ($link) {
 	$actions = '';
 	$style = 'margin:20px 0px;padding:10px;border:1px solid #555;-moz-border-radius:4px;border-radius:4px;background:#efefef url(/images/brain-icon.png) 98% 6px no-repeat;';
 	$h2Style = '';
-}?>
+}
+// Get total points for assessment
+$total = 0;
+
+// Get all MC questions
+$mcQuestions = AssessmentQuestion::model()->findAllByAttributes(array('assessment_id'=>$data->id));
+foreach($mcQuestions as $q) {
+	$total = $total + $q->points;
+}
+
+// Get all free form questions
+$ffQuestions = AssessmentFreeform::model()->findAllByAttributes(array('assessment_id'=>$_GET['id']));
+foreach($ffQuestions as $q) {
+	$criteria = Criteria::model()->findAllByAttributes(array('assessment_freeform_id'=>$q->id));
+	foreach($criteria as $c) {
+		$total = $total + $c->points;
+	}
+}
+?>
 <div class="question" style="<?php echo $style;?>">
 	<?php echo $actions;?>
-	<h2 style="margin:0px;<?php echo $h2Style;?>"><?php echo $title;?></h2>
+	<h2 style="margin:0px;<?php echo $h2Style;?>"><?php echo "$title ($total)";?></h2>
 </div>
