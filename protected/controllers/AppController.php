@@ -33,10 +33,13 @@ class AppController extends Controller
 		);
 	}
 
-	public function actionView()
-	{
+	public function actionView() {
+		// Get all free form questions associated with this assessment
+		$models['App'] = $this->loadModel();
+		$models['Challenge'] = Challenge::model()->findAllByAttributes(array('app_id'=>$_GET['id']));
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel(),
+			'model'=>$models
 		));
 	}
 
