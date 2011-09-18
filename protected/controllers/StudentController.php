@@ -16,12 +16,16 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('login'),
+				'actions'=>array(),
 				'users'=>array('*'),
 			),
 			array('allow',
 				'actions'=>array(),
 				'users'=>array('@'),
+			),
+            array('allow',
+				'actions'=>array('login','game','games'),
+				'users'=>array('student'),
 			),
 			array('allow',
 				'actions'=>array('admin','delete','index','view','create','update'),
@@ -183,7 +187,6 @@ class StudentController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()) {
-                Yii::app()->user->type = WebUser::TYPE_STUDENT;
 				$this->redirect(Yii::app()->user->returnUrl);
             }
 		}

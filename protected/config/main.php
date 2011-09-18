@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'My Web Application',
+    'name'=>'Craniak',
 
     // preloading 'log' component
     'preload'=>array('log'),
@@ -24,11 +24,13 @@ return array(
     // application components
     'components'=>array(
         'user'=>array(
-            'class'=>'WebUser',
+            'class'=>'CWebUser',
             // enable cookie-based authentication
             'allowAutoLogin'=>true,
         ),
-
+        /*'authManager'=>array(
+            'class'=>'CPhpAuthManager',
+        ),*/
 
         // uncomment the following to use a MySQL database
         'db'=>array(
@@ -50,11 +52,10 @@ return array(
                     'levels'=>'error, warning',
                 ),
                 // uncomment the following to show log messages on web pages
-                /*
-                    array(
-                        'class'=>'CWebLogRoute',
-                    ),
-                    */
+                array(
+                    'class'=>'CWebLogRoute',
+                    'levels'=>'error, warning',
+                ),
             ),
         ),
         'urlManager'=>array(

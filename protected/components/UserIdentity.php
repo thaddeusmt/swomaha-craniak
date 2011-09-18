@@ -18,11 +18,14 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
+        $auth = Yii::app()->authManager;
 		$users=array(
 			// username => password
-			'demo'=>'demo',
+			'student'=>'student',
+            'teacher'=>'teacher',
 			'admin'=>'admin',
 		);
+
 		if(!isset($users[$this->username]))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		else if($users[$this->username]!==$this->password)
@@ -33,4 +36,8 @@ class UserIdentity extends CUserIdentity
 		return !$this->errorCode;
 	}
 
+    /*public function getType()
+    {
+        return $this->type;
+    }*/
 }

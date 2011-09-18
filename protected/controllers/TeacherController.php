@@ -16,17 +16,17 @@ class TeacherController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('login'),
+				'actions'=>array(),
 				'users'=>array('*'),
 			),
 			array('allow',
 				'actions'=>array(),
 				'users'=>array('@'),
 			),
-            /*array('allow',
-				'actions'=>array('create'),
-				'roles'=>array('student'),
-			),*/
+            array('allow',
+				'actions'=>array('login','game','games'),
+				'users'=>array('teacher'),
+			),
 			array('allow',
 				'actions'=>array('admin','delete','index','view','create','update'),
 				'users'=>array('admin'),
