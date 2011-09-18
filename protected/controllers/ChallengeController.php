@@ -86,13 +86,16 @@ class ChallengeController extends Controller
 
 	public function actionDelete()
 	{
-		if(Yii::app()->request->isPostRequest)
+		if(isset($_GET['id']))
 		{
-			$this->loadModel()->delete();
+			
+			$challenge = $this->loadModel();
+			$app_id = $challenge->app_id;
+			$challenge->delete();
 
 			if(!isset($_GET['ajax']))
 			{
-				$this->redirect(array('admin'));
+				$this->redirect(array('/app/view/id/'.$app_id));
 			}
 		}
 		else
