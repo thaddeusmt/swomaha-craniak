@@ -28,6 +28,7 @@
             <?php $this->widget('zii.widgets.CMenu',array(
                 'id'=>'nav_bar_center',
                 'firstItemCssClass'=>'first_nav_button',
+                'activeCssClass'=>'nav_active',
                 //'htmlOptions'=>array(),
 
                 'items'=>array(

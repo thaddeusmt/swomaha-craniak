@@ -39,7 +39,7 @@ class StudentController extends Controller
 
     public function init()
 	{
-		$this->layout = 'student';
+		//$this->layout = 'student';
 	}
 
 	public function actionView()
