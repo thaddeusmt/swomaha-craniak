@@ -15,7 +15,7 @@ $leaders = array(
 <h1 style="font-size: 34px; font-weight: bold"><?php echo $model->name; ?></h1>
 
 <div style="width:400px; float: left; margin-right: 20px;">
-    <img style="width:400px;" src="<?php echo $model->image ?>" />
+    <img style="width:400px;" src="/images/apps/<?php echo $model->image ?>" />
     <?php echo $model->description ?>
 
     <h2 style="font-size: 24px; font-weight: bold; border-bottom: 2px solid #ccc;">Leaderboard</h2>
