@@ -23,9 +23,3 @@
 	?>
 	<?php echo $form->error($model,'prompt'); ?>
 </div>
-
-<div class="row">
-	<?php echo $form->labelEx($model,'points'); ?>
-	<?php echo $form->textField($model,'points',array('size'=>10,'maxlength'=>4)); ?>
-	<?php echo $form->error($model,'points'); ?>
-</div>
