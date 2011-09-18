@@ -85,13 +85,13 @@ a:active {text-decoration: none; color: #FE8600; font-weight: 700} */
 
 
 a.play-button  {
-    float: right; background: #FE8600; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
+    float: right; background: #febf79; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
 }
 .play-button  {
-    background: #FE8600; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
+    background: #febf79; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
 }
 .play-button:hover {
-    background: #febf79;
+    background: #FE8600;
 }
 
 div.flash-error, div.flash-notice, div.flash-success

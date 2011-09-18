@@ -9,7 +9,6 @@ $leaders = array(
     Student::model()->findByPk(2),
     Student::model()->findByPk(3),
     );
-
 ?>
 
 <h1 style="font-size: 34px; font-weight: bold"><?php echo $model->name; ?></h1>
