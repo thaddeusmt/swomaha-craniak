@@ -1,24 +1,18 @@
 <?php
 $this->breadcrumbs=array(
 	'Games'=>array('/teacher/games'),
-	$model->name,
+	$model['App']->name,
 );
 
-/*$this->menu=array(
-	array('label'=>Yii::t('app', 'List') . ' App', 'url'=>array('index')),
-	array('label'=>Yii::t('app', 'Create') . ' App', 'url'=>array('create')),
-	array('label'=>Yii::t('app', 'Update') . ' App', 'url'=>array('update', 'id'=>$model['App']->id)),
-	array('label'=>Yii::t('app', 'Delete') . ' App', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model['App']->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>Yii::t('app', 'Manage') . ' App', 'url'=>array('admin')),
-);*/
-?>
-<div class="app" style="margin:0px 0px 10px 0px;height:44px;padding:8px;border:1px solid #555;-moz-border-radius:4px;-border-radius:4px;background-color:#efefef">
-	<h1 style="margin:0px;line-height:40px;"><img src="/images/challenges/<?php echo $model['App']->image;?>" alt="App Icon" style="margin-right:10px;float:left;height:40px;" /><?php echo $model['App']->name;?></h1>
-</div>
-
+echo $this->renderPartial('_view', array(
+	'model'=>$model['App'],
+	'form' =>$form,
+	'link' => true
+)); ?>
+<div class="challenges" style="margin:20px 0px;padding:10px;border:1px solid #555;-moz-border-radius:4px;border-radius:4px;background:#efefef url(/images/brain-icon.png) 98% 6px no-repeat;">
 <?php 
 if(sizeof($model['Challenge']) > 0) { ?>
-	<div class="challenges" style="padding-left:20px">
+	
 	<h2>Challenges</h2>
 	<?php foreach($model['Challenge'] as $challenge) {
 		echo $this->renderPartial('/challenge/_view', array(
@@ -27,9 +21,8 @@ if(sizeof($model['Challenge']) > 0) { ?>
 			'link' => true
 		)); ?>
 	<?php }?>
-	</div>
 <?php } else {
-	echo '<p>No challenges found.</p>';
+	echo '<p style="float:left;">No challenges found.</p>';
 }?>
-<div class="actions"><a href="">Add Challenge</a></div>
-<h3><?php echo CHtml::link('Create New Challenge', array('/challenge/create')); ?></h3>
+</div>
+<div class="actions" style="margin-bottom:20px;float:right;clear:right;"><a href="/challenge/create/id/<?php echo $model['App']->id?>" style="-moz-border-radius:8px;border-radius:8px;border:1px solid #888;display:inline-block;padding:6px 6px 6px 34px;background:#eee url(/images/add.png) no-repeat 4px 50%;">Add Challenge</a></div>

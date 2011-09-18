@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-	'Apps',
-	Yii::t('app', 'Index'),
+	'Apps'/*,
+	Yii::t('app', 'Index'),*/
 );
 
 $this->menu=array(
@@ -10,7 +10,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Apps</h1>
+<h1 style="float:left;margin-bottom:10px;">My Apps</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
