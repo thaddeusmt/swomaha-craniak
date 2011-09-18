@@ -3,11 +3,11 @@
 <?php echo $form->errorSummary($model); ?>
 
 <div style="float:left;margin-right:40px;">
-	<h2 style="margin:0px;">Name <span class="required">*</span></h2>
+	<h3 style="margin:0px;">Name <span class="required">*</span></h3>
 	<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 </div>
 <div style="float:left;">
-	<h2 style="margin-bottom:0px;">Type <span class="required">*</span></h2>
+	<h3 style="margin-bottom:0px;">Type <span class="required">*</span></h3>
 	<?php echo CHtml::activeDropDownList($model, 'type', array(
 				'video' => Yii::t('app', 'video') ,
 				'reading' => Yii::t('app', 'reading') ,
@@ -18,7 +18,7 @@
 </div>
 
 <div style="clear:left;">
-	<h2 style="margin-bottom:0px;">Description <span class="required">*</span></h2>
+	<h3 style="margin-bottom:0px;">Description <span class="required">*</span></h3>
 	<?php
 	$this->widget('application.extensions.ckeditor.CKEditorWidget',
 		array(

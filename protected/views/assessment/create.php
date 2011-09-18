@@ -10,7 +10,7 @@ $this->menu=array(
 );
 ?>
 
-<h1> Create Assessment </h1>
+<h1>Create Assessment</h1>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

@@ -1,7 +1,7 @@
 <div style="clear: both; padding: 10px; border: 2px solid #ccc; margin: 10px 0;">
 
     <div style="float: left; margin-right: 15px; padding: 2px; border: 1px solid #ccc; ">
-        <?php echo CHtml::link(CHtml::image($data->image,CHtml::encode($data->name),array('style'=>'width:80px;')), array('student/game', 'id'=>$data->id)); ?>
+        <?php echo CHtml::link(CHtml::image('/images/apps/'.$data->image,CHtml::encode($data->name),array('style'=>'width:80px;')), array('student/game', 'id'=>$data->id)); ?>
     </div>
 
     <div style="float: left; width: 300px;">
