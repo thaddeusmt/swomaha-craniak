@@ -184,7 +184,6 @@ class TeacherController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()) {
-                Yii::app()->user->type = WebUser::TYPE_TEACHER;
 				$this->redirect(Yii::app()->user->returnUrl);
             }
 		}
