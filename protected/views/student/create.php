@@ -15,13 +15,16 @@ $this->menu=array(
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'Student-form',
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 ));
 echo $this->renderPartial('_form', array(
 	'model'=>$model,
 	'form' =>$form
-	)); ?>
-
+	));
+echo $this->renderPartial('/user/_form', array(
+	'model'=>$user,
+	'form' =>$form
+	));?>
 <div class="row buttons">
 	<?php
 	$url = array(Yii::app()->request->getQuery('returnTo'));

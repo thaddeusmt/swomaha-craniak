@@ -15,10 +15,10 @@ class AssessmentQuestion extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('task_assessment_quiz_id, points', 'required'),
+			array('assessment_id, points, prompt', 'required'),
 			array('points', 'numerical', 'integerOnly'=>true),
-			array('task_assessment_quiz_id', 'length', 'max'=>10),
-			array('id, task_assessment_quiz_id, points', 'safe', 'on'=>'search'),
+			array('assessment_id', 'length', 'max'=>10),
+			array('id, assessment_id, points', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,7 +42,7 @@ class AssessmentQuestion extends CActiveRecord
 	{
 		return array(
 			'id' => Yii::t('app', 'ID'),
-			'task_assessment_quiz_id' => Yii::t('app', 'Task Assessment Quiz'),
+			'assessment_id' => Yii::t('app', 'Task Assessment'),
 			'points' => Yii::t('app', 'Points'),
 		);
 	}
@@ -53,7 +53,7 @@ class AssessmentQuestion extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 
-		$criteria->compare('task_assessment_quiz_id',$this->task_assessment_quiz_id,true);
+		$criteria->compare('assessment_id',$this->assessment_id,true);
 
 		$criteria->compare('points',$this->points);
 

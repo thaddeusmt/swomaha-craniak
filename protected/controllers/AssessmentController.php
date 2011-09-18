@@ -20,7 +20,7 @@ class AssessmentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','addFreeform'),
 				'users'=>array('@'),
 			),
 			array('allow',
@@ -37,6 +37,28 @@ class AssessmentController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel(),
+		));
+	}
+	
+	public function actionAddFreeform() {
+		$model=new AssessmentFreeform;
+
+		//$this->performAjaxValidation($model);
+
+		if(isset($_POST['AssessmentFreeform']) && isset($_SESSION['assessment_id']))
+		{
+			$model->attributes = $_POST['AssessmentFreeform'];
+			$model->assessment_id = $_SESSION['assessment_id'];
+
+			if($model->save()) {
+
+			    $this->redirect(array('view','id'=>$model->id));
+			    unset($_SESSION['assessment_id']);
+			}
+		}
+
+		$this->render('addFreeform',array(
+			'model'=>$model
 		));
 	}
 

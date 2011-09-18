@@ -32,8 +32,8 @@ $this->menu=array(
 				printf('<li>%s</li>', CHtml::link($foreignobj->name, array('app/view', 'id' => $foreignobj->id)));
 
 				} ?></ul><br /><h2><?php echo Yii::t('app','{relation} that belongs to this {model}',array('{relation}'=>'Group', '{model}'=>'Student'));?>: </h2>
-<ul><?php foreach($model->groups as $foreignobj) {
+<ul><?php //foreach($model->groups as $foreignobj) {
 
-				printf('<li>%s</li>', CHtml::link($foreignobj->name, array('group/view', 'id' => $foreignobj->id)));
+				//printf('<li>%s</li>', CHtml::link($foreignobj->name, array('group/view', 'id' => $foreignobj->id)));
 
-				} ?></ul>
+				//} ?></ul>

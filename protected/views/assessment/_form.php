@@ -17,23 +17,18 @@
 <?php echo $form->error($model,'type'); ?>
 </div>
 
-		<div class="row">
-<?php echo $form->labelEx($model,'assessment_id'); ?>
-<?php echo $form->textField($model,'assessment_id'); ?>
-<?php echo $form->error($model,'assessment_id'); ?>
-</div>
+<label for="Challenge">Belonging Challenge</label>
+<?php
+$this->widget('ext.Relation', array(
+	'model' => $model,
+	'relation' => 'challenge',
+	'fields' => 'name',
+	'allowEmpty' => false,
+	'style' => 'dropdownlist',
+	'htmlOptions' => array(
+		'checkAll' => Yii::t('app', 'Choose All'),
+		'template' => '<div style="float:left;margin-right:5px;">{input}</div>{label}',
+		),
 
-<label for="Challenge">Belonging Challenge</label><?php
-						$this->widget('ext.Relation', array(
-							'model' => $model,
-							'relation' => 'task',
-							'fields' => 'challenge_id',
-							'allowEmpty' => false,
-							'style' => 'dropdownlist',
-							'htmlOptions' => array(
-								'checkAll' => Yii::t('app', 'Choose All'),
-								'template' => '<div style="float:left;margin-right:5px;">{input}</div>{label}',
-								),
-
-							)
-						); ?>
+	)
+); ?>

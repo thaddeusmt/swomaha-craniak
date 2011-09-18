@@ -16,9 +16,4 @@
 	<?php echo CHtml::encode($data->type); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('assessment_id')); ?>:</b>
-	<?php echo CHtml::encode($data->assessment_id); ?>
-	<br />
-
-
 </div>
