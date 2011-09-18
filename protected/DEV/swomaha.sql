@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 17, 2011 at 10:42 PM
+-- Generation Time: Sep 18, 2011 at 01:36 AM
 -- Server version: 5.1.53
 -- PHP Version: 5.3.4
 
@@ -100,6 +100,7 @@ INSERT INTO `assessment` (`id`, `task_id`, `name`, `type`) VALUES
 CREATE TABLE IF NOT EXISTS `assessment_freeform` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `assessment_id` int(10) unsigned NOT NULL,
+  `prompt` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_assessment_freeform_assessment1` (`assessment_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -108,8 +109,8 @@ CREATE TABLE IF NOT EXISTS `assessment_freeform` (
 -- Dumping data for table `assessment_freeform`
 --
 
-INSERT INTO `assessment_freeform` (`id`, `assessment_id`) VALUES
-(1, 2);
+INSERT INTO `assessment_freeform` (`id`, `assessment_id`, `prompt`) VALUES
+(1, 2, 'Tell us about the scale of the solar system, and how the Earth fits in compared to the other planets.');
 
 -- --------------------------------------------------------
 
@@ -280,6 +281,30 @@ INSERT INTO `student` (`id`, `user_id`, `first_name`, `last_name`, `avatar`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_answer`
+--
+
+CREATE TABLE IF NOT EXISTS `student_answer` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `answer_id` int(10) unsigned NOT NULL,
+  `student_id` int(10) unsigned NOT NULL,
+  `assessment_id` int(10) unsigned NOT NULL,
+  `assessment_question_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_student_answer_answer1` (`answer_id`),
+  KEY `fk_student_answer_student1` (`student_id`),
+  KEY `fk_student_answer_assessment1` (`assessment_id`),
+  KEY `fk_student_answer_assessment_question1` (`assessment_question_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `student_answer`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student_app`
 --
 
@@ -307,16 +332,38 @@ INSERT INTO `student_app` (`student_id`, `app_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `student_award` (
-  `student_id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `award_id` int(10) unsigned NOT NULL,
-  `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`student_id`,`award_id`),
-  KEY `fk_student_has_award_award1` (`award_id`),
-  KEY `fk_student_has_award_student1` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `student_id` int(10) unsigned NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_student_award_award1` (`award_id`),
+  KEY `fk_student_award_student1` (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `student_award`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_freeform`
+--
+
+CREATE TABLE IF NOT EXISTS `student_freeform` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `submission` text NOT NULL,
+  `assessment_id` int(10) unsigned NOT NULL,
+  `student_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_student_freeform_assessment1` (`assessment_id`),
+  KEY `fk_student_freeform_student1` (`student_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `student_freeform`
 --
 
 
@@ -469,7 +516,7 @@ ALTER TABLE `challenge`
 -- Constraints for table `criteria`
 --
 ALTER TABLE `criteria`
-  ADD CONSTRAINT `fk_criteria_task_assessment_freeform1` FOREIGN KEY (`assessment_freeform_id`) REFERENCES `assessment_freeform` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_criteria_task_assessment_freeform1` FOREIGN KEY (`assessment_freeform_id`) REFERENCES `assessment_freeform` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `points`
@@ -486,25 +533,41 @@ ALTER TABLE `student`
   ADD CONSTRAINT `fk_student_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `student_answer`
+--
+ALTER TABLE `student_answer`
+  ADD CONSTRAINT `fk_student_answer_assessment_question1` FOREIGN KEY (`assessment_question_id`) REFERENCES `assessment_question` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_student_answer_answer1` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_student_answer_assessment1` FOREIGN KEY (`assessment_id`) REFERENCES `assessment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_student_answer_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `student_app`
 --
 ALTER TABLE `student_app`
-  ADD CONSTRAINT `fk_student_has_app_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_student_has_app_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_student_has_app_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_student_has_app_app1` FOREIGN KEY (`app_id`) REFERENCES `app` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_award`
 --
 ALTER TABLE `student_award`
-  ADD CONSTRAINT `fk_student_has_award_award1` FOREIGN KEY (`award_id`) REFERENCES `award` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_student_has_award_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_student_award_award1` FOREIGN KEY (`award_id`) REFERENCES `award` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_student_award_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `student_freeform`
+--
+ALTER TABLE `student_freeform`
+  ADD CONSTRAINT `fk_student_freeform_assessment1` FOREIGN KEY (`assessment_id`) REFERENCES `assessment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_student_freeform_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `student_group`
 --
 ALTER TABLE `student_group`
-  ADD CONSTRAINT `fk_student_has_group_group1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_student_has_group_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_student_has_group_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_student_has_group_group1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher`
