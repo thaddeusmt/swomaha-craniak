@@ -1,6 +1,6 @@
 <div id="welcome_wrapper">
     <div id="welcome_message"></div>
-    <div id="login_box"></div>
+    <div id="badge_box"></div>
     <div id="welcome_helper"></div>
 </div>
 <div class="featured_item">
@@ -11,3 +11,5 @@
     <div class="featured_image"><img src="/images/featured_students.jpg" alt="Craniak for Students"/></div>
     <div class="featured_copy">For students, Craniak provides a fun learning environment that's easy to use and compelling to progress through. Learners can earn awesome rewards, like badges and coins, which they can then use to purchase in-game or real world rewards.</div>
 </div>
+<div id="sponsor_msg">Craniak is sponsored by the good folks at</div>
+<a href="http://www.layeredi.com/"><img id="layeredi" src="/images/layered_logo.jpg" alt="LAYEREDi" title="LAYEREDi"/></a>
