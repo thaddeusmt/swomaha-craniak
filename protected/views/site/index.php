@@ -1,16 +1,13 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
-
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <tt><?php echo __FILE__; ?></tt></li>
-	<li>Layout file: <tt><?php echo $this->getLayoutFile('main'); ?></tt></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div id="welcome_wrapper">
+    <div id="welcome_message"></div>
+    <div id="login_box"></div>
+    <div id="welcome_helper"></div>
+</div>
+<div class="featured_item">
+    <div class="featured_image"></div>
+    <div class="featured_copy">For educators, Craniak offers a one-stop interactive curriculum development platform. Instructors can incentivize learning through game dynamics that inspire students to grow and learn &mdash; and did we mention they'll have fun doing it?</div>
+</div>
+<div class="featured_item">
+    <div class="featured_image"></div>
+    <div class="featured_copy">For students, Craniak provides a fun learning environment that's easy to use and compelling to progress through. Learners can earn awesome rewards, like badges and coins, which they can then use to purchase in-game or real world rewards.</div>
+</div>
