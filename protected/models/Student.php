@@ -26,7 +26,8 @@ class Student extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'awards' => array(self::MANY_MANY, 'Award', 'award_has_student(student_id, award_id)'),
+			'awards' => array(self::MANY_MANY, 'Award', 'student_award(student_id, award_id)'),
+            'studentAward' => array(self::HAS_MANY, 'StudentAward', 'student_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'apps' => array(self::MANY_MANY, 'App', 'student_app(student_id, app_id)'),
 		);
@@ -78,5 +79,22 @@ class Student extends CActiveRecord
 
     public function givePoints($points) {
 
+    }
+
+    public function getGlobalPoints() {
+        //$user = User::model()->findbyPk(STUDENTID);
+
+        if (!$studentId = $this->id) {
+            $studentId = STUDENTID;
+        }
+
+        $points = Points::model()->findAllByAttributes(array('student_id'=>$studentId));
+        $total = 0;
+        if($points) {
+            foreach ($points as $point) {
+                $total = $total + $point->points;
+            }
+        }
+        return $total;
     }
 }

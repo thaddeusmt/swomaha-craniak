@@ -24,9 +24,12 @@ $leaders = array(
         <div style="width: 50px; float: left; font-size: 24px; font-weight: bold; text-align: center"><?php echo ($i+1) ?></div>
         <?php echo CHtml::image($leader->avatar,$leader->first_name,array('style'=>'width: 50px; float: left;')); ?>
         <div style="float: right; font-size: 20px; font-weight: bold; text-align: center">
-            <div class="float: right"><?php echo $model->getPoints($leader->id) ?> Points</div>
+            <div style="line-height:50px; ">
+                <?php echo $model->getPoints($leader->id) ?> Points
+                <img src="/images/coins.png" style="width: 20px;" />
+            </div>
         </div>
-        <div style="float: left; font-size: 24px; font-weight: bold; text-align: center">
+        <div style="float: left; font-size: 24px; font-weight: bold; text-align: center; line-height:50px; ">
             <?php echo CHtml::link($leader->first_name, array('student/profile','id'=>$leader->id)) ?>
         </div>
 
@@ -46,7 +49,7 @@ $leaders = array(
     </div>
     <?php endif; ?>
 
-    <h2 style="font-size: 24px; font-weight: bold; border-bottom: 2px solid #ccc; overflow: hidden;">Challenges</h2>
+    <h2>Challenges</h2>
     <ul style="list-style-type: none; overflow: hidden;">
         <?php foreach($model->challenges as $challenge): ?>
         <li style="margin: 0 0 10px 0;padding: 0 0 10px 0; border-bottom: 2px solid #ccc;">

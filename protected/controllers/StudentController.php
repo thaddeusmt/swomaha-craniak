@@ -54,13 +54,7 @@ class StudentController extends Controller
 		$model=new Student;
 		$user=new User;
 
-		foreach($_POST as $key => $value) {
-			if(is_array($value))
-				$_SESSION[$key] = $value;
-		}
-
-
-		$this->performAjaxValidation($model);
+		//$this->performAjaxValidation($model);
 
 		if(isset($_POST['Student']))
 		{
@@ -218,8 +212,32 @@ class StudentController extends Controller
         } else {
             $id = STUDENTID;
         }
+
+        $model=Student::model()->findbyPk($id);
+		$user=$model->user;
+
+		//$this->performAjaxValidation($model);
+
+		if(isset($_POST['Student']))
+		{
+			$model->attributes = $_POST['Student'];
+			$user->attributes = $_POST['User'];
+			$user->type = 'student';
+
+			/*if(isset($_POST['Student']['Group']))
+				$model->groups = $_POST['Student']['Group'];*/
+
+			if($user->save()) {
+				$model->user_id = $user->id;
+				if($model->save()) {
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			}
+		}
+
 		$this->render('profile',array(
-			'model'=>Student::model()->findbyPk($id),
+			'model'=>$model,'user'=>$user
 		));
+
 	}
 }
