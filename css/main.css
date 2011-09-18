@@ -85,7 +85,7 @@ a:active {text-decoration: none; color: #FE8600; font-weight: 700} */
 
 
 a.play-button  {
-    float: right; background: #FE8600; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
+    float: right; background: #febf79; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
 }
 .play-button  {
     background: #febf79; color: #fff; padding: 5px 10px; font-size: 16px; border-radius: 6px;
