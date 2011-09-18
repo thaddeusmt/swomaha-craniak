@@ -15,10 +15,9 @@ class AssessmentFreeform extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('assessment_id, points, prompt', 'required'),
-			array('points', 'numerical', 'integerOnly'=>true),
+			array('assessment_id, prompt', 'required'),
 			array('assessment_id', 'length', 'max'=>10),
-			array('id, assessment_id, points', 'safe', 'on'=>'search'),
+			array('id, assessment_id', 'safe', 'on'=>'search'),
 		);
 	}
 

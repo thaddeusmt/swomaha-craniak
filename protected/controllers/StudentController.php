@@ -76,8 +76,6 @@ class StudentController extends Controller
 				if($model->save()) {
 					$this->redirect(array('view','id'=>$model->id));
 				}
-			} else {
-				print_r($user->errors);
 			}
 		}
 

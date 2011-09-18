@@ -20,7 +20,7 @@ class AssessmentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('create','update','addFreeform'),
+				'actions'=>array('create','update','addFreeform','addMultipleChoice'),
 				'users'=>array('@'),
 			),
 			array('allow',
@@ -33,15 +33,26 @@ class AssessmentController extends Controller
 		);
 	}
 
-	public function actionView()
-	{
+	public function actionView() {
+		// Get all free form questions associated with this assessment
+		$models['Assessment'] = $this->loadModel();
+		$models['AssessmentQuestion'] = AssessmentQuestion::model()->findAllByAttributes(array('assessment_id'=>$_GET['id']));
+		$models['AssessmentFreeform'] = AssessmentFreeform::model()->findAllByAttributes(array('assessment_id'=>$_GET['id']));
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel(),
+			'model'=>$models
+		));
+	}
+	
+	public function actionFreeFormView() {
+		$this->render('freeFormView',array(
+			'model'=>$this->loadModel()
 		));
 	}
 	
 	public function actionAddFreeform() {
 		$model=new AssessmentFreeform;
+		$assessment = Assessment::model()->findbyPk($_GET['id']);
 
 		//$this->performAjaxValidation($model);
 
@@ -51,14 +62,57 @@ class AssessmentController extends Controller
 			$model->assessment_id = $_SESSION['assessment_id'];
 
 			if($model->save()) {
-
-			    $this->redirect(array('view','id'=>$model->id));
-			    unset($_SESSION['assessment_id']);
+				unset($_SESSION['assessment_id']);
+			    $this->redirect(array('view','id'=>$assessment->id));
 			}
 		}
+		
+		$_SESSION['assessment_id'] = $assessment->id;
 
 		$this->render('addFreeform',array(
 			'model'=>$model
+		));
+	}
+	
+	public function actionAddMultipleChoice() {
+		$question=new AssessmentQuestion;
+		$assessment = Assessment::model()->findbyPk($_GET['id']);
+		
+		//print_r($_POST);
+
+		if(isset($_POST['AssessmentQuestion']) && isset($_SESSION['assessment_id']))
+		{
+			$question->attributes = $_POST['AssessmentQuestion'];
+			$answers = $_POST['Answer'];
+			
+			$question->assessment_id = $_SESSION['assessment_id'];
+
+			// Save questions
+			if($question->save()) {
+				// Save all answers
+				$successful = true;
+				foreach($answers as $a) {
+					$answer = new Answer;
+					$answer->attributes = $a;
+					$answer->question_id = $question->id;
+					if(!$answer->save()) {
+						$successful = false;
+						echo $answer->answer.'<br/>';
+					}
+				}
+				if ($successful) {
+					unset($_SESSION['assessment_id']);
+			    	$this->redirect(array('view','id'=>$assessment->id));
+				} else {
+					
+				}
+			}
+		}
+		
+		$_SESSION['assessment_id'] = $assessment->id;
+
+		$this->render('addMultipleChoice',array(
+			'model'=>$question
 		));
 	}
 

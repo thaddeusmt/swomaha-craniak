@@ -16,6 +16,7 @@ class Answer extends CActiveRecord
 	{
 		return array(
 			array('question_id', 'required'),
+			array('answer,correct', 'safe'),
 			array('question_id', 'length', 'max'=>10),
 			array('id, question_id', 'safe', 'on'=>'search'),
 		);
