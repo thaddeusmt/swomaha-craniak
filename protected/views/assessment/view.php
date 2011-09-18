@@ -18,12 +18,13 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'task.challenge_id',
+		/*'id',
+		'challenge.id',*/
 		'name',
-		'type',
-		'assessment_id',
+		'type'
 	),
-)); ?>
+));
+echo CHtml::link('Add Freeform Question', array('assessment/addFreeform/id/'.$model->id));
+?>
 
 

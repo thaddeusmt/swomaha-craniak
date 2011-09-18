@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2011/09/17 20:59:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'swomaha'@'localhost' (using password: YES)' in /www/yii-1.1.8/framework/db/CDbConnection.php:364
 Stack trace:
 #0 /www/yii-1.1.8/framework/db/CDbConnection.php(313): CDbConnection->open()
@@ -2019,3 +2020,5 @@ Stack trace:
 #1 C:\xampp\htdocs\yii-1.1.8\framework\base\CApplication.php(158): CWebApplication->processRequest()
 #2 C:\xampp\htdocs\swomaha\index.php(13): CApplication->run()
 #3 {main} REQUEST_URI=/favicon.ico
+=======
+>>>>>>> Add assessments & freeform questions

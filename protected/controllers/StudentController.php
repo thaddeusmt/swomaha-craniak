@@ -52,35 +52,37 @@ class StudentController extends Controller
 	public function actionCreate()
 	{
 		$model=new Student;
+		$user=new User;
 
 		foreach($_POST as $key => $value) {
 			if(is_array($value))
 				$_SESSION[$key] = $value;
 		}
 
-		if(isset($_SESSION['Student']))
-			$model->attributes = $_SESSION['Student'];
 
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Student']))
 		{
 			$model->attributes = $_POST['Student'];
+			$user->attributes = $_POST['User'];
+			$user->type = 'student';
+			
+			/*if(isset($_POST['Student']['Group']))
+				$model->groups = $_POST['Student']['Group'];*/
 
-			if(isset($_POST['Student']['App']))
-				$model->apps = $_POST['Student']['App'];
-			if(isset($_POST['Student']['Group']))
-				$model->groups = $_POST['Student']['Group'];
-
-			if($model->save()) {
-				unset($_SESSION['Student']);
-
-				$this->redirect(array('view','id'=>$model->id));
+			if($user->save()) {
+				$model->user_id = $user->id;
+				if($model->save()) {
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			} else {
+				print_r($user->errors);
 			}
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model,'user'=>$user
 		));
 	}
 

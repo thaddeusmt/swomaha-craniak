@@ -15,14 +15,17 @@ class AssessmentFreeform extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('id', 'safe', 'on'=>'search'),
+			array('assessment_id, points, prompt', 'required'),
+			array('points', 'numerical', 'integerOnly'=>true),
+			array('assessment_id', 'length', 'max'=>10),
+			array('id, assessment_id, points', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations()
 	{
 		return array(
-			'criterias' => array(self::HAS_MANY, 'Criteria', 'task_assessment_freeform_id'),
+			'criterias' => array(self::HAS_MANY, 'Criteria', 'assessment_freeform_id'),
 		);
 	}
 

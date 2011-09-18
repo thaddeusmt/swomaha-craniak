@@ -15,19 +15,18 @@ class Assessment extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('task_id, name, type, assessment_id', 'required'),
-			array('assessment_id', 'numerical', 'integerOnly'=>true),
+			array('task_id, name, type', 'required'),
 			array('task_id', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>8),
-			array('id, task_id, name, type, assessment_id', 'safe', 'on'=>'search'),
+			array('id, task_id, name, type', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations()
 	{
 		return array(
-			'task' => array(self::BELONGS_TO, 'Challenge', 'task_id'),
+			'challenge' => array(self::BELONGS_TO, 'Challenge', 'task_id'),
 		);
 	}
 
@@ -47,7 +46,6 @@ class Assessment extends CActiveRecord
 			'task_id' => Yii::t('app', 'Task'),
 			'name' => Yii::t('app', 'Name'),
 			'type' => Yii::t('app', 'Type'),
-			'assessment_id' => Yii::t('app', 'Assessment'),
 		);
 	}
 
@@ -62,8 +60,6 @@ class Assessment extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 
 		$criteria->compare('type',$this->type,true);
-
-		$criteria->compare('assessment_id',$this->assessment_id);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
