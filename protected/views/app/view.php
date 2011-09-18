@@ -16,6 +16,7 @@ $this->breadcrumbs=array(
 	<h1 style="margin:0px;line-height:40px;"><img src="/images/challenges/<?php echo $model['App']->image;?>" alt="App Icon" style="margin-right:10px;float:left;height:40px;" /><?php echo $model['App']->name;?></h1>
 </div>
 
+<<<<<<< HEAD
 <?php 
 if(sizeof($model['Challenge']) > 0) { ?>
 	<div class="challenges" style="padding-left:20px">
@@ -33,3 +34,19 @@ if(sizeof($model['Challenge']) > 0) { ?>
 }?>
 <div class="actions"><a href="">Add Challenge</a></div>
 <h3><?php echo CHtml::link('Create New Challenge', array('/challenge/create')); ?></h3>
+=======
+<h1><?php echo $model->name; ?></h1>
+
+<img src="<?php echo $model->image ?>" />
+
+<h2>Challenges</h2>
+
+<ul>
+<?php foreach($model->challenges as $challenge): ?>
+    <li><?php echo CHtml::link($challenge->name, array('/challenge/edit','id'=>$challenge->id)) ?></li>
+<?php endforeach; ?>
+</ul>
+
+    <h3><?php echo CHtml::link('Create New Challenge', array('/challenge/create')); ?></h3>
+
+>>>>>>> 856dd198b3743249c28442998cafab2099a3810b
