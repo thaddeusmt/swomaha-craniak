@@ -61,9 +61,14 @@ class App extends CActiveRecord
 		));
 	}
 
-    public function getPoints() {
+    public function getPoints($studentId = null) {
         //$user = User::model()->findbyPk(STUDENTID);
-        $points = Points::model()->findAllByAttributes(array('app_id'=>$this->id,'student_id'=>STUDENTID));
+
+        if ($studentId === null) {
+            $studentId = STUDENTID;
+        }
+        //$user = User::model()->findbyPk(STUDENTID);
+        $points = Points::model()->findAllByAttributes(array('app_id'=>$this->id,'student_id'=>$studentId));
         $total = 0;
         foreach ($points as $point) {
             $total += $point->points;

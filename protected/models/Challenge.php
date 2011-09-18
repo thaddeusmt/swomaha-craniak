@@ -71,10 +71,15 @@ class Challenge extends CActiveRecord
 		));
 	}
 
-    public function getPoints() {
+    public function getPoints($studentId = null) {
         //$user = User::model()->findbyPk(STUDENTID);
+
+        if ($studentId === null) {
+            $studentId = STUDENTID;
+        }
+
         $assessment = Assessment::model()->findByAttributes(array('task_id'=>$this->id));
-        $points = Points::model()->findAllByAttributes(array('assessment_id'=>$assessment->id,'student_id'=>STUDENTID));
+        $points = Points::model()->findAllByAttributes(array('assessment_id'=>$assessment->id,'student_id'=>$studentId));
         $total = 0;
         if($points) {
             foreach ($points as $point) {

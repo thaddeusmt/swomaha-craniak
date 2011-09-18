@@ -17,7 +17,7 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<div id="all_wrapper" class="container">
+<div id="all_wrapper">
 
     <div id="header">
         <div id="header_left"></div>
@@ -33,9 +33,10 @@
 
                 'items'=>array(
                     array('label'=>'Home', 'url'=>array('/site/index'),'itemOptions'=>array('class'=>'nav_button')),
+                    array('label'=>'My Profile', 'url'=>array('/student/profile'),'visible'=>Yii::app()->user->name=='student','itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'My Games', 'url'=>array('/student/games'),'visible'=>Yii::app()->user->name=='student','itemOptions'=>array('class'=>'nav_button')),
 
-                    array('label'=>'My Games', 'url'=>array('/teacher/games'),'visible'=>Yii::app()->user->name=='teacher','itemOptions'=>array('class'=>'nav_button')),
+                    array('label'=>'My Games', 'url'=>array('/app'),'visible'=>Yii::app()->user->name=='teacher','itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Game Builder', 'url'=>array('/app/create'),'visible'=>Yii::app()->user->name=='teacher','itemOptions'=>array('class'=>'nav_button')),
 
                     array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
@@ -43,7 +44,7 @@
                     array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Student Login', 'url'=>array('/student/login'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
                     array('label'=>'Teacher Login', 'url'=>array('/teacher/login'), 'visible'=>Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button')),
-                    array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button'))
+                    array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest,'itemOptions'=>array('class'=>'nav_button'))
                 ),
             )); ?>
             <div id="nav_bar_right"></div>
@@ -56,6 +57,16 @@
                 'links'=>$this->breadcrumbs,
             )); ?><!-- breadcrumbs -->
         <?php endif?>
+
+        <?php if(Yii::app()->user->hasFlash('success')):?>
+          <div class="flash-success">
+              <?php echo Yii::app()->user->getFlash('success'); ?>
+          </div>
+        <?php elseif(Yii::app()->user->hasFlash('error')):?>
+          <div class="flash-error">
+              <?php echo Yii::app()->user->getFlash('error'); ?>
+          </div>
+        <?php endif; ?>
 
         <?php echo $content; ?>
 

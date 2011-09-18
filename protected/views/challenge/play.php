@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 $this->menu=array();
 ?>
 
-<h1><?php echo $model->name; ?></h1>
+<h1 style="font-size: 34px; font-weight: bold"><?php echo $model->name; ?></h1>
 
 <p><?php echo $model->description ?></p>
 
