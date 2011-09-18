@@ -46,7 +46,6 @@ class Challenge extends CActiveRecord
 		return array(
 			'id' => Yii::t('app', 'ID'),
 			'app_id' => Yii::t('app', 'App'),
-			'challenge_id' => Yii::t('app', 'Challenge'),
 			'name' => Yii::t('app', 'Name'),
 			'description' => Yii::t('app', 'Description'),
 			'type' => Yii::t('app', 'Type'),

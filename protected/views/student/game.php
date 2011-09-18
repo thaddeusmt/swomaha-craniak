@@ -11,9 +11,11 @@ $this->breadcrumbs=array(
 <img src="<?php $model->image ?>" />
 
 <h2>Challenges</h2>
-<?php /*foreach($model->challenges as $challenge): ?>
-    <?php echo $challenge->name ?>
-<?php endforeach;*/ ?>
+<ul>
+<?php foreach($model->challenges as $challenge): ?>
+    <li><?php echo CHtml::link($challenge->name, array('challenge/play','id'=>$challenge->id)) ?></li>
+<?php endforeach; ?>
+</ul>
 
 <h2>Badges</h2>
 <?php foreach($model->awards as $award): ?>

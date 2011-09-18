@@ -16,15 +16,19 @@ class ChallengeController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','view'),
+				'actions'=>array(),
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('create','update'),
+				'actions'=>array(),
 				'users'=>array('@'),
 			),
+            array('allow',
+				'actions'=>array('play'),
+				'users'=>array('student'),
+			),
 			array('allow',
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','create','update','index','view'),
 				'users'=>array('admin'),
 			),
 			array('deny',
@@ -44,23 +48,13 @@ class ChallengeController extends Controller
 	{
 		$model=new Challenge;
 
-		foreach($_POST as $key => $value) {
-			if(is_array($value))
-				$_SESSION[$key] = $value;
-		}
-
-		if(isset($_SESSION['Challenge']))
-			$model->attributes = $_SESSION['Challenge'];
-
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Challenge']))
 		{
 			$model->attributes = $_POST['Challenge'];
 
-
 			if($model->save()) {
-				unset($_SESSION['Challenge']);
 
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -80,7 +74,6 @@ class ChallengeController extends Controller
 		if(isset($_POST['Challenge']))
 		{
 			$model->attributes = $_POST['Challenge'];
-
 
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -148,5 +141,57 @@ class ChallengeController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+    public function actionPlay()
+	{
+        $this->layout = 'student';
+        //$model = $this->loadModel();
+        $model = Challenge::model()->findbyPk($_GET['id']);
+        $assessment = Assessment::model()->findByAttributes(array('task_id'=>$_GET['id']));
+
+        $questions = null;
+        if($assessment->type == 'quiz') {
+            $questions = AssessmentQuestion::model()->findAllByAttributes(array('assessment_id'=>$assessment->id));
+            $studentAnswer = new StudentAnswer;
+            if(isset($_POST['StudentAnswer']))
+            {
+                $answer_id = null;
+                foreach($questions as $i=>$question)
+                {
+                    $studentAnswer = new StudentAnswer;
+                    if(isset($_POST['StudentAnswer'][$i]))
+                        $answer_id=$_POST['StudentAnswer'][$i]['answer_id'];
+                    $studentAnswer->answer_id = $answer_id;
+                    $studentAnswer->assessment_id = $assessment->id;
+                    $studentAnswer->assessment_question_id = $question->id;
+                    $studentAnswer->student_id = STUDENTID;
+                    $studentAnswer->save();
+                    //print_r($studentAnswer->errors);
+                }
+
+
+            }
+        } elseif($assessment->type == 'freeform') {
+            $freeform = AssessmentFreeform::model()->findByAttributes(array('assessment_id'=>$assessment->id));
+            $questions = $freeform->prompt;
+            $studentAnswer = new StudentFreeform;
+            if(isset($_POST['StudentFreeform']))
+            {
+                $studentAnswer->attributes = $_POST['StudentFreeform'];
+                $studentAnswer->assessment_id = $assessment->id;
+                $studentAnswer->student_id = STUDENTID;
+                $studentAnswer->save();
+            }
+        }
+
+
+
+		$this->render('play',array(
+			'model'=>$model,
+            'assessment'=>$assessment,
+            'questions'=>$questions,
+            'studentAnswer'=>$studentAnswer
+		));
 	}
 }
