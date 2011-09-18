@@ -30,6 +30,7 @@
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+				array('label'=>'Marketplace', 'url'=>array('/site/page', 'view'=>'marketplace')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Student Login', 'url'=>array('/student/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Teacher Login', 'url'=>array('/teacher/login'), 'visible'=>Yii::app()->user->isGuest),
