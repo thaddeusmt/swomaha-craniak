@@ -36,13 +36,24 @@ class ChallengeController extends Controller
 			),
 		);
 	}
+	
+	public function actionView() {
+		// Get all free form questions associated with this assessment
+		$models['Challenge'] = $this->loadModel();
+		$models['Assessment'] = Assessment::model()->findByAttributes(array('task_id'=>$models['Challenge']->id));
 
-	public function actionView()
-	{
 		$this->render('view',array(
-			'model'=>$this->loadModel(),
+			'model'=>$models
 		));
 	}
+
+//	public function actionView() {
+		
+		
+//		$this->render('view',array(
+//			'model'=>$this->loadModel(),
+//		));
+//	}
 
 	public function actionCreate()
 	{
