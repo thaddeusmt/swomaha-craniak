@@ -2,7 +2,7 @@
 
 class StudentController extends Controller
 {
-	public $layout='student';
+	public $layout='main';
 	private $_model;
 
 	public function filters()
@@ -39,7 +39,7 @@ class StudentController extends Controller
 
     public function init()
 	{
-		$this->layout = 'student';
+		//$this->layout = 'student';
 	}
 
 	public function actionView()

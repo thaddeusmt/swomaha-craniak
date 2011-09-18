@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 18, 2011 at 01:36 AM
+-- Generation Time: Sep 18, 2011 at 03:02 AM
 -- Server version: 5.1.53
 -- PHP Version: 5.3.4
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `app` (
 --
 
 INSERT INTO `app` (`id`, `name`, `image`) VALUES
-(1, 'Solar System', NULL);
+(1, 'Solar System', '/images/challenges/solarsystem.jpg');
 
 -- --------------------------------------------------------
 
@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `student_answer` (
   KEY `fk_student_answer_student1` (`student_id`),
   KEY `fk_student_answer_assessment1` (`assessment_id`),
   KEY `fk_student_answer_assessment_question1` (`assessment_question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `student_answer`
